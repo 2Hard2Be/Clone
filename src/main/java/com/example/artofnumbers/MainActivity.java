@@ -37,7 +37,11 @@ public class MainActivity extends ActionBarActivity {
 
     "cm(centimeter)","ft(feet)","in(inch)", "km(kilometer)", "m(meter)", "mi(mile)", "mm(millimeter)", "yd(yard)",
 
-    "hp(horsepower_international)","kW(kilowatt)","W(Watt)","ton(refrigeration)"};
+    "hp(horsepower_international)","kW(kilowatt)","W(Watt)","ton(refrigeration)",
+
+    "atm(standard_atmosphere)","bar","inHg(inches_of_mercury_0C)","inH2O(inches_of_water_4C)","kPa(kilopascal)","Pa(pascal)",
+    "hPa(hectopascal","msw(metre_sea_water)","fsw(feet_sea_water)","Torr",
+    "mbar(milibar)","mmHg(milimeter_of_mercury_0C","mmH2O(milimeter_of_water_4C","decibar(dbar)","psi(pounds_per_square_inch)"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
