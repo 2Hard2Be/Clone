@@ -47,73 +47,139 @@ public class Presion {
                         break;
 
                     case  "bar":
-                        respuestan = 1 * number;
+                        respuestan = 1.01325 * number;
                         break;
 
                     case "inHg(inches_of_mercury_0C)":
                     case "inHg":
 
-                        respuestan =  0.74569987 * number;
+                        respuestan =  29.921331924 * number;
                         break;
 
                     case "inH2O(inches_of_water_4C)":
                     case "inH2O":
-                        respuestan =   745.69987 * number;
+                        respuestan =   406.793746638 * number;
                         break;
 
                     case "kPa(kilopascal)":
                     case "kPa":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 101.32501   * number;
                         break;
 
                     case "Pa(pascal)":
                     case "Pa":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 101325.01   * number;
                         break;
 
                     case "hPa(hectopascal":
                     case "hPa":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 1013.2501   * number;
                         break;
 
-                    case "msw(metre_sea_water)":
-                    case "msw":
-                        respuestan = 0.212036131   * number;
-                        break;
-
-                    case "fsw(feet_sea_water)":
-                    case "fsw":
-                        respuestan = 0.212036131   * number;
-                        break;
 
                     case "Torr":
                     case "torr":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 760.000066   * number;
                         break;
 
                     case  "mbar(milibar)":
                     case "mbar":
-                        respuestan = 0.212036131   * number;
+                        respuestan =  1013.250   * number;
                         break;
 
                     case  "mmHg(milimeter_of_mercury_0C":
                     case "mmHg":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 759.999952   * number;
                         break;
 
                     case  "mmH2O(milimeter_of_water_4C":
                     case "mmH2O":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 10332.275548   * number;
                         break;
 
                     case  "decibar(dbar)":
                     case "dbar":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 10.132501   * number;
                         break;
 
                     case  "psi(pounds_per_square_inch)":
                     case "psi":
-                        respuestan = 0.212036131   * number;
+                        respuestan = 14.695950   * number;
+                        break;
+
+                    default:
+                        respuestan = Double.parseDouble(errorto);
+
+                }
+                break;
+//po aqui voy
+            case  "bar":
+                switch (unidadesto) {
+
+                    case  "atm(standard_atmosphere)":
+                    case "atm":
+                        respuestan = 1 * number;
+                        break;
+
+                    case  "bar":
+                        respuestan = 1.01325 * number;
+                        break;
+
+                    case "inHg(inches_of_mercury_0C)":
+                    case "inHg":
+
+                        respuestan =  29.921331924 * number;
+                        break;
+
+                    case "inH2O(inches_of_water_4C)":
+                    case "inH2O":
+                        respuestan =   406.793746638 * number;
+                        break;
+
+                    case "kPa(kilopascal)":
+                    case "kPa":
+                        respuestan = 101.32501   * number;
+                        break;
+
+                    case "Pa(pascal)":
+                    case "Pa":
+                        respuestan = 101325.01   * number;
+                        break;
+
+                    case "hPa(hectopascal":
+                    case "hPa":
+                        respuestan = 1013.2501   * number;
+                        break;
+
+
+                    case "Torr":
+                    case "torr":
+                        respuestan = 760.000066   * number;
+                        break;
+
+                    case  "mbar(milibar)":
+                    case "mbar":
+                        respuestan =  1013.250   * number;
+                        break;
+
+                    case  "mmHg(milimeter_of_mercury_0C":
+                    case "mmHg":
+                        respuestan = 759.999952   * number;
+                        break;
+
+                    case  "mmH2O(milimeter_of_water_4C":
+                    case "mmH2O":
+                        respuestan = 10332.275548   * number;
+                        break;
+
+                    case  "decibar(dbar)":
+                    case "dbar":
+                        respuestan = 10.132501   * number;
+                        break;
+
+                    case  "psi(pounds_per_square_inch)":
+                    case "psi":
+                        respuestan = 14.695950   * number;
                         break;
 
                     default:
