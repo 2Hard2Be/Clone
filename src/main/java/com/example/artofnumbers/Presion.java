@@ -422,68 +422,68 @@ public class Presion {
 
                     case  "atm(standard_atmosphere)":
                     case "atm":
-                        respuestan = 0.009869 * number;
+                        respuestan = 0.000009869 * number;
                         break;
 
                     case  "bar":
-                        respuestan =  0.01 * number;
+                        respuestan =  0.00001 * number;
                         break;
 
                     case "inHg(inches_of_mercury_0C)":
                     case "inHg":
 
-                        respuestan =   0.295299 * number;
+                        respuestan =  0.000295299 * number;
                         break;
 
                     case "inH2O(inches_of_water_4C)":
                     case "inH2O":
-                        respuestan =    4.014630 * number;
+                        respuestan = 0.004014630 * number;
                         break;
 
                     case "kPa(kilopascal)":
                     case "kPa":
-                        respuestan =  1   * number;
+                        respuestan =  0.001   * number;
                         break;
 
                     case "Pa(pascal)":
                     case "Pa":
-                        respuestan =  1000   * number;
+                        respuestan =  1   * number;
                         break;
 
                     case "hPa(hectopascal)":
                     case "hPa":
-                        respuestan = 10 * number;
+                        respuestan = 0.01 * number;
                         break;
 
 
                     case "Torr":
                     case "torr":
-                        respuestan = 7.500616* number;
+                        respuestan =  0.007500 * number;
                         break;
 
                     case  "mbar(milibar)":
                     case "mbar":
-                        respuestan = 10 * number;
+                        respuestan = 0.01 * number;
                         break;
 
                     case  "mmHg(milimeter_of_mercury_0C)":
                     case "mmHg":
-                        respuestan = 7.500615  * number;
+                        respuestan = 0.007500  * number;
                         break;
 
                     case  "mmH2O(milimeter_of_water_4C)":
                     case "mmH2O":
-                        respuestan = 101.971621   * number;
+                        respuestan = 0.101971   * number;
                         break;
 
                     case  "decibar(dbar)":
                     case "dbar":
-                        respuestan = 0.1 * number;
+                        respuestan = 0.0001 * number;
                         break;
 
                     case  "psi(pounds_per_square_inch)":
                     case "psi":
-                        respuestan =  0.145037738   * number;
+                        respuestan =  0.000145037   * number;
                         break;
 
                     default:
