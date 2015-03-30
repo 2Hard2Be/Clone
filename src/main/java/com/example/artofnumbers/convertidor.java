@@ -180,6 +180,55 @@ public class convertidor {
                     respuestastring = "Unknown units to convert";
                 }
                 break;
+
+//           PRESION
+
+            case  "atm(standard_atmosphere)":
+            case "atm":
+            case  "bar":
+            case "inHg(inches_of_mercury_0C)":
+            case "inhg":
+            case "inH2O(inches_of_water_4C)":
+            case "inh2o":
+            case "kPa(kilopascal)":
+            case "kPa":
+            case "Pa(pascal)":
+            case "Pa":
+            case "hPa(hectopascal)":
+            case "hPa":
+            case "Torr":
+            case "torr":
+            case  "mbar(milibar)":
+            case "mbar":
+            case  "mmHg(milimeter_of_mercury_0C)":
+            case "mmhg":
+            case  "mmH2O(milimeter_of_water_4C)":
+            case "mmh2o":
+            case  "decibar(dbar)":
+            case "dbar":
+            case  "psi(pounds_per_square_inch)":
+            case "psi":
+
+
+//                HashSet contine los parametros para evaluar las unidades to
+                final Set<String> valuespressure = new HashSet<String>(Arrays.asList("atm(standard_atmosphere)",
+                        "atm","bar","inHg(inches_of_mercury_0C)","inhg","inH2O(inches_of_water_4C)",
+                        "inh2o","kPa(kilopascal)","kPa","Pa(pascal)","Pa","hPa(hectopascal)","hPa",
+                        "Torr","torr","mbar(milibar)","mbar","mmHg(milimeter_of_mercury_0C)","mmhg",
+                        "mmH2O(milimeter_of_water_4C)","mmh2o","decibar(dbar)","dbar",
+                        "psi(pounds_per_square_inch)","psi"));
+
+                if (valuespressure.contains(unidadto)) {
+
+                    Presion presiontrickey = new Presion(numero, unidad, unidadto);
+                    respuestastring = presiontrickey.calculaUnaPresion(numero, unidad, unidadto);
+
+                } else {
+                    respuestastring = "Unknown units to convert";
+                }
+                break;
+
+
             default:
 
                 respuestastring =  "Unknown units";
