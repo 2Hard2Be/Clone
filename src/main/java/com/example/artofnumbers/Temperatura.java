@@ -49,14 +49,14 @@ public class Temperatura {
                     case "Fahrenheit":
                     case "f":
 
-                        respuestan =  (9/5) * number+32;
+                        respuestan =  (1.8*number)+32;
                         break;
 
 
                     case "Rankine":
                     case "r":
 
-                        respuestan =(number+273.15)*(9/5);
+                        respuestan =(number+273.15)*(1.8);
                         break;
 
                     case "Kelvin":
@@ -71,7 +71,7 @@ public class Temperatura {
                 }
                 break;
 
-//            
+
             case "Fahrenheit":
             case "f":
 
@@ -79,25 +79,25 @@ public class Temperatura {
                     case  "Celcius":
                     case "c":
 
-                        respuestan = 1 * number;
+                        respuestan =  (number-32)*(1.8);
                         break;
 
                     case "Fahrenheit":
                     case "f":
 
-                        respuestan =  (9/5) * number+32;
+                        respuestan =  number*1;
                         break;
 
 
                     case "Rankine":
                     case "r":
 
-                        respuestan =(number+273.15)*(9/5);
+                        respuestan =(number+459.67);
                         break;
 
                     case "Kelvin":
                     case "k":
-                        respuestan = 273.15 + number;
+                        respuestan = (number+459.67)*(0.555556);
                         break;
 
 
@@ -107,35 +107,33 @@ public class Temperatura {
                 }
                 break;
 
-            case "kW(kilowatt)":
-            case "kw":
-            case "kW":
+            case "Rankine":
+            case "r":
 
                 switch (unidadesto) {
-                    case  "hp(horsepower_international)":
-                    case "hp":
+                    case  "Celcius":
+                    case "c":
 
-                        respuestan =  1.341022092 * number;
+                        respuestan =  (number-491.67)*(0.555556);
                         break;
 
-                    case "kW(kilowatt)":
-                    case "kw":
-                    case "kW":
-                        respuestan =  1 * number;
+                    case "Fahrenheit":
+                    case "f":
+
+                        respuestan =  number-459.67;
                         break;
 
 
-                    case "Watt":
-                    case "W(Watt)":
-                    case "W":
-                    case "w":
-                        respuestan =   1000 * number;
+                    case "Rankine":
+                    case "r":
+
+                        respuestan =(number*1);
                         break;
 
-                    case "ton(refrigeration)":
-                        respuestan = 0.284345   * number;
+                    case "Kelvin":
+                    case "k":
+                        respuestan = (number)*(0.555556);
                         break;
-
 
 
                     default:
@@ -144,36 +142,33 @@ public class Temperatura {
                 }
                 break;
 
-            case "Watt":
-            case "W(Watt)":
-            case "W":
-            case "w":
+            case "Kelvin":
+            case "k":
 
                 switch (unidadesto) {
-                    case  "hp(horsepower_international)":
-                    case "hp":
+                    case  "Celcius":
+                    case "c":
 
-                        respuestan =  0.001341 * number;
+                        respuestan =  (number-273.15);
                         break;
 
-                    case "kW(kilowatt)":
-                    case "kw":
-                    case "kW":
-                        respuestan =  0.001 * number;
+                    case "Fahrenheit":
+                    case "f":
+
+                        respuestan =  number*(1.8)-459.67;
                         break;
 
 
-                    case "Watt":
-                    case "W(Watt)":
-                    case "W":
-                    case "w":
-                        respuestan =   1 * number;
+                    case "Rankine":
+                    case "r":
+
+                        respuestan =number*(1.8);
                         break;
 
-                    case "ton(refrigeration)":
-                        respuestan =  0.000284345   * number;
+                    case "Kelvin":
+                    case "k":
+                        respuestan = (number)*1;
                         break;
-
 
 
                     default:
@@ -181,44 +176,6 @@ public class Temperatura {
 
                 }
                 break;
-
-            case "ton(refrigeration)":
-
-                switch (unidadesto) {
-                    case  "hp(horsepower_international)":
-                    case "hp":
-
-                        respuestan =   4.716177354 * number;
-                        break;
-
-                    case "kW(kilowatt)":
-                    case "kw":
-                    case "kW":
-                        respuestan =  3.516852 * number;
-                        break;
-
-
-                    case "Watt":
-                    case "W(Watt)":
-                    case "W":
-                    case "w":
-                        respuestan =    3516.852 * number;
-                        break;
-
-                    case "ton(refrigeration)":
-                        respuestan =  1   * number;
-                        break;
-
-
-
-                    default:
-                        respuestan = Double.parseDouble(errorto);
-
-                }
-                break;
-
-
-
 
 
             default:

@@ -229,6 +229,33 @@ public class convertidor {
                 break;
 
 
+//            TEMPERATURA
+
+            case  "Celcius":
+            case "c":
+            case "Fahrenheit":
+            case "f":
+            case "Rankine":
+            case "r":
+            case "Kelvin":
+            case "k":
+
+
+//                HashSet contine los parametros para evaluar las unidades to
+                final Set<String> valuestemperatura = new HashSet<String>(Arrays.asList("Celcius","c",
+                        "Fahrenheit","f","Rankine","r","Kelvin","k"));
+
+                if (valuestemperatura.contains(unidadto)) {
+
+                    Temperatura temperaturatrickey = new Temperatura(numero, unidad, unidadto);
+                    respuestastring = temperaturatrickey.calculaUnaTemperatura(numero, unidad, unidadto);
+
+                } else {
+                    respuestastring = "Unknown units to convert";
+                }
+                break;
+
+
             default:
 
                 respuestastring =  "Unknown units";
