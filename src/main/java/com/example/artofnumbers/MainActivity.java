@@ -43,7 +43,11 @@ public class MainActivity extends ActionBarActivity {
     "hPa(hectopascal)","Torr",
     "mbar(milibar)","mmHg(milimeter_of_mercury_0C)","mmH2O(milimeter_of_water_4C)","decibar(dbar)","psi(pounds_per_square_inch)",
 
-   "Celcius","Fahrenheit","Rankine","Kelvin" };
+   "Celcius","Fahrenheit","Rankine","Kelvin",
+
+    "BTU(British thermal unit)","j(joule)","cal(calorie)","kcal(kilocalorie)","kj(kilojoule)",
+
+    "millisecond","s(second)","min(minute)","hr(hour)","d(day)","month","yr(year)"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

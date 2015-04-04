@@ -256,6 +256,77 @@ public class convertidor {
                 break;
 
 
+//            Energia
+
+
+            case  "BTU(British thermal unit)":
+            case "btu":
+            case "BTU":
+            case "j(joule)":
+            case "j":
+            case "joule":
+            case "cal(calorie)":
+            case "cal":
+            case "Cal":
+            case "kcal(kilocalorie)":
+            case "kcal":
+            case "kj(kilojoule)":
+            case "kj":
+
+
+//                HashSet contine los parametros para evaluar las unidades to
+                final Set<String> valuesenergia = new HashSet<String>(Arrays.asList("BTU(Britishthermalunit)",
+                        "btu","BTU","j(joule)","j","joule","cal(calorie)","cal","Cal","kcal(kilocalorie)",
+                        "kcal","kj(kilojoule)","kj"));
+
+                if (valuesenergia.contains(unidadto)) {
+
+                    Energia energiatrickey = new Energia(numero, unidad, unidadto);
+                    respuestastring = energiatrickey.calculaUnaEnergia(numero, unidad, unidadto);
+
+                } else {
+                    respuestastring = "Unknown units to convert";
+                }
+                break;
+
+            //            Tiempo
+
+
+            case  "ms(millisecond)":
+            case "msec":
+            case "ms":
+            case "s(second)":
+            case "s":
+            case "sec":
+            case "min(minute)":
+            case "min":
+            case "h(hour)":
+            case "hr":
+            case "h":
+            case "d(day)":
+            case "d":
+            case "month":
+            case "yr(year)":
+            case "year":
+            case "yr":
+
+
+//                HashSet contine los parametros para evaluar las unidades to
+                final Set<String> valuestiempo = new HashSet<String>(Arrays.asList("ms(millisecond)",
+                        "msec","ms","s(second)","s","sec","min(minute)","min","h(hour)","hr","h",
+                        "d(day)","d","month","yr(year)","year","yr"));
+
+                if (valuestiempo.contains(unidadto)) {
+
+                    Tiempo tiempotrickey = new Tiempo(numero, unidad, unidadto);
+                    respuestastring = tiempotrickey.calculaUnTiempo(numero, unidad, unidadto);
+
+                } else {
+                    respuestastring = "Unknown units to convert";
+                }
+                break;
+
+
             default:
 
                 respuestastring =  "Unknown units";
