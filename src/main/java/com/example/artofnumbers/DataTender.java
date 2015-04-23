@@ -16,9 +16,9 @@ public class DataTender {
 
 //    Data base fields
 
-    private SQLiteDatabase database;
+    private static SQLiteDatabase database;
     private DBscroll dbhelper;
-    private String[] allColumns = {DBscroll.COLUMN_ID, DBscroll.COLUMN_RESPUESTA};
+    private static String[] allColumns = {DBscroll.COLUMN_ID, DBscroll.COLUMN_RESPUESTA};
 
     public DataTender(Context context){
 
@@ -35,12 +35,12 @@ dbhelper = new DBscroll(context);
         dbhelper.close();
     }
 
-    public Respuestas createRespuesta(String respuesta) {
+    public static Respuestas createRespuesta(String respuesta) {
 
         ContentValues values = new ContentValues();
         values.put(DBscroll.COLUMN_RESPUESTA, respuesta);
         long insertId = database.insert(DBscroll.TABLE_RESPUESTAS, null, values);
-        Cursor cursor = database.query(DBscroll.TABLE_RESPUESTAS, allColumns, DBscroll.COLUMN_ID+
+        Cursor cursor = database.query(DBscroll.TABLE_RESPUESTAS, allColumns, DBscroll.COLUMN_ID +
         " = "+insertId,null,null,null,null);
         cursor.moveToFirst();
         Respuestas nuevaRespuesta = cursorToRespuesta(cursor);
@@ -71,7 +71,7 @@ dbhelper = new DBscroll(context);
         cursor.close();
         return respuestas;
     }
-private Respuestas cursorToRespuesta (Cursor cursor){
+private static Respuestas cursorToRespuesta(Cursor cursor){
 
     Respuestas respuesta = new Respuestas();
     respuesta.setId(cursor.getLong(0));
