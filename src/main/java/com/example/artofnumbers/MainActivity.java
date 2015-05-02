@@ -1,7 +1,9 @@
 package com.example.artofnumbers;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.location.GpsStatus;
+import android.sax.StartElementListener;
 import android.support.v7.app.ActionBarActivity;
 
 import android.support.v7.app.ActionBar;
@@ -21,15 +23,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
+
+
 
     private static final String[] UNIDADES = new String[] {
 
@@ -60,16 +67,7 @@ public class MainActivity extends ListActivity {
 
 // ATENCION TODO LO QUE ESTA DENTRO DE ESTE COMENTARIO ES DE LA BASE DE DATOS
 
-        DataTender datatender = new DataTender(this);
-        try {
-            datatender.open();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        List<Respuestas> respuestas = datatender.getAllRespuestas();
-        ArrayAdapter<Respuestas> adaptador = new ArrayAdapter<Respuestas>(this, android.R.layout.simple_list_item_1,respuestas);
-        setListAdapter(adaptador);
+final DatabaseHand dbrespuestas = new DatabaseHand(this);
 
 
 //*******************AQUI TERMINA LA SECCION DE LA BASE DE DATOS *****************
@@ -190,8 +188,7 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                 }
 //AQUI PROBANDO EL MANEJO DE CIFRAS
 
-                ArrayAdapter<Respuestas> adaptador = (ArrayAdapter<Respuestas>)getListAdapter();
-                Respuestas respuestas = null;
+
 
                 String numero = numeros.toString();
                 String unidad = unidades.toString();
@@ -199,17 +196,23 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
 
                 convertidor conversor = new convertidor(numero, unidad, unidadto);
 
-                String respuesta =  conversor.convierte(numero, unidad, unidadto);
+                String respuesto =  conversor.convierte(numero, unidad, unidadto);
 
+//                ATENCION MANEJO DE LA BASE DE DATOS
+                dbrespuestas.addRespuesta(new RespuestaClass(respuesto));
+               ArrayList<String> respuestastodas = dbrespuestas.getAllrespuestas();
+
+
+
+
+//          FIN DE SECCION MANEJO DE DATOS EN LA BASE
                 TextView resultado = (TextView)findViewById(R.id.resultado);
+                ListView resultados = (ListView)findViewById(R.id.list);
 
 //                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
 //                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
-                resultado.setText(numeros+" "+unidades+" "+"is equivalent to"+" "+respuesta+" "+unidadesto);
-
-
-               respuestas = DataTender.createRespuesta(respuesta);
-                adaptador.add(respuestas);
+                resultado.setText(numeros+" "+unidades+" "+"is equivalent to"+" "+respuesto+" "+unidadesto);
+               resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,respuestastodas));
 
 
         }});

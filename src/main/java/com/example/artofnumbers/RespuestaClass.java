@@ -18,40 +18,40 @@ public class RespuestaClass {
 
     public RespuestaClass(int id, String respuesta){
 
-        this._id=id;
-        this._anwort=respuesta;
+        _id=id;
+        _anwort= respuesta;
 
     }
 
     public RespuestaClass(String respuesta){
 
-        this._anwort=respuesta;
+        _anwort=respuesta;
     }
 
 //    get the id
 
     public int getID(){
 
-        return this._id;
+        return _id;
     }
 
 //    set the id
 
     public void setID(int id){
-        this._id=id;
+        _id=id;
     }
 
 //    get the respuesta
 
     public String getRespuesta(){
 
-        return this._anwort;
+        return _anwort;
     }
 
 // set the respuesta
 
     public void setRespuesta(String respuesta){
-        this._anwort=respuesta;
+        _anwort = respuesta;
     }
 
 }
