@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 
 // ATENCION TODO LO QUE ESTA DENTRO DE ESTE COMENTARIO ES DE LA BASE DE DATOS
 
-final DatabaseHand dbrespuestas = new DatabaseHand(this);
+final DatabaseHand dbcerebro = new DatabaseHand(this);
 
 
 //*******************AQUI TERMINA LA SECCION DE LA BASE DE DATOS *****************
@@ -197,23 +197,27 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                 convertidor conversor = new convertidor(numero, unidad, unidadto);
 
                 String respuesto =  conversor.convierte(numero, unidad, unidadto);
+                String pregunto = numero+ " " + unidad + " to "+ unidadto;
 
 //                ATENCION MANEJO DE LA BASE DE DATOS
-                dbrespuestas.addRespuesta(new RespuestaClass(respuesto));
-               ArrayList<String> respuestastodas = dbrespuestas.getAllrespuestas();
+                dbcerebro.addRespuesta(new RespuestaClass(respuesto));
+               ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
 
+                dbcerebro.addPregunta(new PreguntaClass(pregunto));
+                ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
 
 
 
 //          FIN DE SECCION MANEJO DE DATOS EN LA BASE
                 TextView resultado = (TextView)findViewById(R.id.resultado);
                 ListView resultados = (ListView)findViewById(R.id.list);
+                ListView preguntas = (ListView)findViewById(R.id.list2);
 
 //                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
 //                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
                 resultado.setText(numeros+" "+unidades+" "+"is equivalent to"+" "+respuesto+" "+unidadesto);
-               resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,respuestastodas));
-
+               resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas));
+              preguntas.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas));
 
         }});
 
