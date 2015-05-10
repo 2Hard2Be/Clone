@@ -165,61 +165,63 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                     }
                     else {
 
-                        ii = i+1;
-                        while (texto[ii]!=' '){
 
-                            unidades.append(texto[ii]).toString();
-                            ii++;
+                        for (ii = i+1; ii < texto.length; ii++){
+                           if(texto[ii] != ' ') {
+                               unidades.append(texto[ii]).toString();
+                           }
+                            else{
+
+
+                        for (iii = ii+1; iii < texto.length; iii++) {
+
+                            unidadesto.append(texto[iii]).toString();
                         }
 
-                        iii = ii+1;
+                            i = texto.length;
+                            String numero = numeros.toString();
+                            String unidad = unidades.toString();
+                            String unidadto = unidadesto.toString();
+                            convertidor conversor = new convertidor(numero, unidad, unidadto);
 
-
-                        while (iii < texto.length) {
-                          unidadesto.append(texto[iii]).toString();
-                        iii++;
-                        }
-
-
-                     break;
-
-                }
-
-                }
-//AQUI PROBANDO EL MANEJO DE CIFRAS
-
-
-
-                String numero = numeros.toString();
-                String unidad = unidades.toString();
-                String unidadto = unidadesto.toString();
-
-                convertidor conversor = new convertidor(numero, unidad, unidadto);
-
-                String respuesto =  conversor.convierte(numero, unidad, unidadto);
-                String pregunto = numero+ " " + unidad + " to "+ unidadto;
+                            String respuesto = conversor.convierte(numero, unidad, unidadto);
+                            String pregunto = numero + " " + unidad + " to " + unidadto;
 
 //                ATENCION MANEJO DE LA BASE DE DATOS
-                dbcerebro.addRespuesta(new RespuestaClass(respuesto));
-               ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
+                            dbcerebro.addRespuesta(new RespuestaClass(respuesto));
+                            ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
 
-                dbcerebro.addPregunta(new PreguntaClass(pregunto));
-                ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
-
+                            dbcerebro.addPregunta(new PreguntaClass(pregunto));
+                            ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
 
 
 //          FIN DE SECCION MANEJO DE DATOS EN LA BASE
-                TextView resultado = (TextView)findViewById(R.id.resultado);
-                ListView resultados = (ListView)findViewById(R.id.list);
-                ListView preguntas = (ListView)findViewById(R.id.list2);
+                            TextView resultado = (TextView) findViewById(R.id.resultado);
+                            ListView resultados = (ListView) findViewById(R.id.list);
+                            ListView preguntas = (ListView) findViewById(R.id.list2);
 
 //                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
 //                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
-                resultado.setText(numeros+" "+unidades+" "+"is equivalent to"+" "+respuesto+" "+unidadesto);
-               resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas));
-              preguntas.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas));
+                            resultado.setText(numeros + " " + unidades + " " + "is equivalent to" + " " + respuesto + " " + unidadesto);
+                            resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas));
+                            preguntas.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas));
+                            break;
 
-        }});
+
+
+
+
+
+
+
+    }}
+
+
+                }
+                }
+
+
+            }});
 
 
 
