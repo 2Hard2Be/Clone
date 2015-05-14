@@ -68,6 +68,8 @@ public class MainActivity extends Activity {
 // ATENCION TODO LO QUE ESTA DENTRO DE ESTE COMENTARIO ES DE LA BASE DE DATOS
 
 final DatabaseHand dbcerebro = new DatabaseHand(this);
+        dbcerebro.borraLaspreguntasviejas();
+        dbcerebro.borraLasrespuestasviejas();
 
 
 //*******************AQUI TERMINA LA SECCION DE LA BASE DE DATOS *****************
@@ -147,6 +149,9 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
         botonigual.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
 
+                dbcerebro.borraLaspreguntasviejas();
+                dbcerebro.borraLasrespuestasviejas();
+
             String informacion = textView.getText().toString();
             StringBuilder numeros = new StringBuilder();
             StringBuilder unidades = new StringBuilder();
@@ -208,25 +213,12 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                             break;
 
 
-
-
-
-
-
-
     }}
 
-
                 }
                 }
-
 
             }});
-
-
-
-
-
 
     }
 
