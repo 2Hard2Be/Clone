@@ -72,6 +72,9 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
         dbcerebro.borraLasrespuestasviejas();
 
 
+        ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
+        ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
+
 //*******************AQUI TERMINA LA SECCION DE LA BASE DE DATOS *****************
 
 
@@ -81,6 +84,11 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
        final MultiAutoCompleteTextView textView = (MultiAutoCompleteTextView)findViewById(R.id.auto);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, UNIDADES);
 
+
+        ListView resultados = (ListView) findViewById(R.id.list);
+        ListView preguntas = (ListView) findViewById(R.id.list2);
+        resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas));
+        preguntas.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas));
 
 //LEE EL AUTOCOMPLETE EN BUSCA DEL TOKEN PARA ESTE CASO ES UN ESPACIO
         textView.setTokenizer(new MultiAutoCompleteTextView.Tokenizer() {
