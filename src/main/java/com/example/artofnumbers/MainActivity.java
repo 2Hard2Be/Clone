@@ -27,6 +27,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -161,6 +162,7 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                 dbcerebro.borraLasrespuestasviejas();
 
             String informacion = textView.getText().toString();
+            StringBuilder comando1 = new StringBuilder();
             StringBuilder numeros = new StringBuilder();
             StringBuilder unidades = new StringBuilder();
             StringBuilder unidadesto = new StringBuilder();
@@ -171,8 +173,26 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                 int i;
                 int ii;
                 int iii;
+                int iv;
 
                 for (i = 0; i < texto.length; i++) {
+
+                    for (iv = i; iv < texto.length; iv++) {
+
+                        comando1.append(texto[iv]).toString();
+                    }
+
+                        String comando = comando1.toString();
+                        if (comando.equals("qq")){
+                            i = texto.length;
+
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                            System.exit(0);
+                        }
+
+
+                    else {
+
                     if (texto[i] != ' ') {
                         numeros.append(texto[i]).toString();
                     }
@@ -223,7 +243,7 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
 
     }}
 
-                }
+                }}
                 }
 
             }});
