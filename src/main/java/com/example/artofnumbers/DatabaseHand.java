@@ -130,7 +130,7 @@ public ArrayList<String> getAllrespuestas(){
 
 ArrayList<String> respuestaClassListtodas = new ArrayList<String>();
 //    Query de todo
-    String selectQuery = "SELECT * FROM " + TABLE_RESPUESTAS;
+    String selectQuery = "SELECT * FROM " + TABLE_RESPUESTAS + " ORDER BY "+ KEY_ID + " DESC";
     SQLiteDatabase db = this.getWritableDatabase();
     Cursor cursor = db.rawQuery(selectQuery,null);
 //    loop de todas las columnas y agregando a la lista respuestaClassListtodas
@@ -151,8 +151,9 @@ do {
 
         ArrayList<String> preguntaClassListtodas = new ArrayList<String>();
 //    Query de todo
-        String selectQuery = "SELECT * FROM " + TABLE_PREGUNTAS;
+        String selectQuery = "SELECT * FROM " + TABLE_PREGUNTAS + " ORDER BY "+ KEY_ID + " DESC";
         SQLiteDatabase db = this.getWritableDatabase();
+
         Cursor cursor = db.rawQuery(selectQuery,null);
 //    loop de todas las columnas y agregando a la lista preguntaClassListtodas
         if (cursor.moveToFirst()){
