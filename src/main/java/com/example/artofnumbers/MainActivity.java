@@ -182,16 +182,54 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                         comando1.append(texto[iv]).toString();
                     }
 
+
                         String comando = comando1.toString();
-                        if (comando.equals("qq")){
-                            i = texto.length;
+                    ComandoReader comandoreader = new ComandoReader(comando);
+                    String comandoleido = comandoreader.identificaQueEs(comando);
+
+
+
+                        switch (comandoleido){
+                            case "q":
 
                             android.os.Process.killProcess(android.os.Process.myPid());
                             System.exit(0);
-                        }
+                                break;
+
+                            case "suma":
+                            case "resta":
+                            case "multiplicacion":
+                            case "division":
 
 
-                    else {
+                                Calculadora calculadora = new Calculadora(comandoleido,comando);
+
+                                String respuesto1 = calculadora.calcula(comandoleido,comando);
+                                String pregunto1 = comando;
+
+//                ATENCION MANEJO DE LA BASE DE DATOS
+                                dbcerebro.addRespuesta(new RespuestaClass(respuesto1));
+                                ArrayList<String> respuestastodas1 = dbcerebro.getAllrespuestas();
+
+                                dbcerebro.addPregunta(new PreguntaClass(pregunto1));
+                                ArrayList<String> preguntastodas1 = dbcerebro.getAllpreguntas();
+
+
+//          FIN DE SECCION MANEJO DE DATOS EN LA BASE
+                                TextView resultado1 = (TextView) findViewById(R.id.resultado);
+                                ListView resultados1 = (ListView) findViewById(R.id.list);
+                                ListView preguntas1 = (ListView) findViewById(R.id.list2);
+
+//                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
+//                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
+                                resultado1.setText(pregunto1 + " = " + respuesto1);
+                                resultados1.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas1));
+                                preguntas1.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas1));
+                                i = texto.length;
+                                    break;
+
+                            default:
+
 
                     if (texto[i] != ' ') {
                         numeros.append(texto[i]).toString();
@@ -241,9 +279,8 @@ final Button botonigual = (Button)findViewById(R.id.botonaso);
                             break;
 
 
-    }}
-
-                }}
+    }} }
+                        }
                 }
 
             }});
