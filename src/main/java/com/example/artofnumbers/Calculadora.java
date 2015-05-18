@@ -15,6 +15,8 @@ public class Calculadora {
     public String arg2string;
 
 
+
+
     public Calculadora (String vieneoperacion, String lacarnita ){
 
         operacion = vieneoperacion;
@@ -82,76 +84,94 @@ public class Calculadora {
         comparadorlong = lecturaraw.length-longitudstring;
 
 
-        switch (validaciondesignos){
+        switch (validaciondesignos) {
 
             case 1:
-                if (posigno != 0 && posigno != lecturaraw.length-1){
+                if (posigno != 0 && posigno != lecturaraw.length - 1) {
 
-                    for (ii =0; ii<posigno; ii++){
+                    for (ii = 0; ii < posigno; ii++) {
                         argumento1.append(lecturaraw[ii]).toString();
 
 
                     }
-                    iii=posigno+1;
-                    while (iii <lecturaraw.length){
+                    iii = posigno + 1;
+                    while (iii < lecturaraw.length) {
 
                         argumento2.append(lecturaraw[iii]).toString();
-                        iii=iii+1;
+                        iii = iii + 1;
                     }
 
                     String arg1string = argumento1.toString();
                     String arg2string = argumento2.toString();
-                    Double arg1double = Double.valueOf(arg1string);
-                    Double arg2double = Double.valueOf(arg2string);
+
+                    if (isDouble(arg1string) || isDouble(arg2string)) {
+
+                        Double arg1double = Double.valueOf(arg1string);
+                        Double arg2double = Double.valueOf(arg2string);
 
 
-                    switch(operacion){
-                        case "suma":
-                            calculodouble = arg1double + arg2double;
-                            calculostr = calculodouble.toString();
-                            break;
+                        switch (operacion) {
+                            case "suma":
+                                calculodouble = arg1double + arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
 
-                        case "resta":
-                            calculodouble = arg1double - arg2double;
-                            calculostr = calculodouble.toString();
-                            break;
+                            case "resta":
+                                calculodouble = arg1double - arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
 
-                        case "multiplicacion":
-                            calculodouble = arg1double * arg2double;
-                            calculostr = calculodouble.toString();
-                            break;
+                            case "multiplicacion":
+                                calculodouble = arg1double * arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
 
-                        case "division":
-                            calculodouble = arg1double / arg2double;
-                            calculostr = calculodouble.toString();
-                            break;
+                            case "division":
+                                calculodouble = arg1double / arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
 
-                        default:
-                            calculostr="error";
+                            default:
+                                calculostr = "error";
+
+
+                        }
 
 
                     }
 
+                    else{
+
+                        calculostr = "use numbers for calculations";
+
+                    }
+
+                    } else {
+
+                        calculostr = " ";
+                    }
+                    break;
+                    default:
+
+                        calculostr = "use two arguments per calculation ";
+
 
                 }
-
-                else {
-
-                    calculostr = " ";
-                }
-                break;
-            default:
-
-                calculostr = "use two arguments per calculation ";
-
-
-
-
-        }
 
 
 
         return calculostr;
 
     }
+
+    public boolean isDouble( String str ){
+        try{
+            Double.parseDouble( str );
+            return true;
+        }
+        catch( Exception e ){
+            return false;
+        }
+    }
 }
+
