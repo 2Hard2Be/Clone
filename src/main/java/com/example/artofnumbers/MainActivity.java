@@ -9,10 +9,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -105,16 +107,16 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
 
 
-                String item = ((TextView) view).getText().toString();
-                char [] resultadoatextview = item.toCharArray();
-                textView.setText(resultadoatextview, 0, resultadoatextview.length);
-                textView.setText(textView.getText(),TextView.BufferType.NORMAL);
-                textView.setSelection(textView.getText().length());
+
+                        String item = ((TextView) view).getText().toString();
+                        char[] resultadoatextview = item.toCharArray();
+                        textView.setText(resultadoatextview, 0, resultadoatextview.length);
+                        textView.setText(textView.getText(), TextView.BufferType.NORMAL);
+                        textView.setSelection(textView.getText().length());
 
 
-
-            }
-        });
+                    }
+                });
 
         preguntas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

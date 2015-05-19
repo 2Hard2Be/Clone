@@ -104,7 +104,7 @@ public class Calculadora {
                     String arg1string = argumento1.toString();
                     String arg2string = argumento2.toString();
 
-                    if (isDouble(arg1string) || isDouble(arg2string)) {
+                    if (isDouble(arg1string) && isDouble(arg2string)) {
 
                         Double arg1double = Double.valueOf(arg1string);
                         Double arg2double = Double.valueOf(arg2string);
