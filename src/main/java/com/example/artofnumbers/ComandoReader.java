@@ -28,6 +28,10 @@ public String comando;
                 quees = "q";
                 break;
 
+            case "c":
+                quees = "c";
+                break;
+
             default:
 
             int i;

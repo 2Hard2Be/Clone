@@ -79,7 +79,7 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
         dbcerebro.borraLasrespuestasviejas();
 
 
-        ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
+         ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
         ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
 
 
@@ -94,8 +94,8 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, UNIDADES);
 
 
-        ListView resultados = (ListView) findViewById(R.id.list);
-        ListView preguntas = (ListView) findViewById(R.id.list2);
+       final ListView resultados = (ListView) findViewById(R.id.list);
+        final ListView preguntas = (ListView) findViewById(R.id.list2);
 
         resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas));
         preguntas.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas));
@@ -238,6 +238,16 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
                             android.os.Process.killProcess(android.os.Process.myPid());
                             System.exit(0);
+                            break;
+
+                        case "c":
+                            dbcerebro.deleteTodasPreguntas();
+                            dbcerebro.deleteTodasRespuestas();
+                            ArrayList<String> respuestastodas2 = dbcerebro.getAllrespuestas();
+                            ArrayList<String> preguntastodas2 = dbcerebro.getAllpreguntas();
+                            resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas2));
+                            preguntas.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas2));
+
                             break;
 
                         case "suma":

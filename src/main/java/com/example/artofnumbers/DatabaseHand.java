@@ -209,6 +209,26 @@ do {
 
     }
 
+    //Deleting todas respuesta y pregunta
+    public void deleteTodasRespuestas(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_RESPUESTAS);
+        db.close();
+
+    }
+
+    public void deleteTodasPreguntas(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_PREGUNTAS);
+        db.close();
+
+
+    }
+
+
+
 //    getting respuestas count
 
   public int getRespuestasCount(){
