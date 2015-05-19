@@ -234,7 +234,7 @@ do {
 
         SQLiteDatabase db = this.getWritableDatabase();
         String eliminadorpreguntas = "delete from " + TABLE_PREGUNTAS + " where "+KEY_ID+" in (select "+ KEY_ID +
-                " from "+ TABLE_PREGUNTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 5);";
+                " from "+ TABLE_PREGUNTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 7);";
         db.execSQL(eliminadorpreguntas);
 
         db.close();}
@@ -243,7 +243,7 @@ do {
 
         SQLiteDatabase db = this.getWritableDatabase();
         String eliminadorrespuestas = "delete from " + TABLE_RESPUESTAS + " where "+KEY_ID+" in (select "+ KEY_ID +
-                " from "+ TABLE_RESPUESTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 5);";
+                " from "+ TABLE_RESPUESTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 7);";
         db.execSQL(eliminadorrespuestas);
 
         db.close();}

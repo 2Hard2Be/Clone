@@ -35,7 +35,7 @@ android:textSize="25sp"/>
     <ListView
         android:id="@+id/list2"
         android:layout_width="200sp"
-        android:layout_height="wrap_content"
+        android:layout_height="500sp"
         android:text="List"
         android:layout_below="@id/resultado"
 
@@ -45,11 +45,12 @@ android:textSize="25sp"/>
     <ListView
         android:id="@+id/list"
         android:layout_width="200sp"
-        android:layout_height="wrap_content"
+        android:layout_height="500sp"
         android:text="List"
         android:layout_below="@id/resultado"
         android:layout_toRightOf="@id/list2"
         android:textSize="25sp"
+
         />
 
 

@@ -3,6 +3,7 @@ package com.example.artofnumbers;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.location.GpsStatus;
+import android.os.Handler;
 import android.sax.StartElementListener;
 import android.support.v7.app.ActionBarActivity;
 
@@ -69,6 +70,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 // ATENCION TODO LO QUE ESTA DENTRO DE ESTE COMENTARIO ES DE LA BASE DE DATOS
 
