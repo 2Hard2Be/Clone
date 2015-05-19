@@ -96,16 +96,20 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
         resultados.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, respuestastodas));
         preguntas.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, preguntastodas));
 
-
+// HACIENDO LOS LISTVIEW QUE SE PUEDAN APRETAR
 
         resultados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
+
+
                 String item = ((TextView) view).getText().toString();
                 char [] resultadoatextview = item.toCharArray();
                 textView.setText(resultadoatextview, 0, resultadoatextview.length);
+                textView.setText(textView.getText(),TextView.BufferType.NORMAL);
+                textView.setSelection(textView.getText().length());
 
 
 
@@ -120,12 +124,14 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                 String item = ((TextView) view).getText().toString();
                 char [] preguntaatextview = item.toCharArray();
                 textView.setText(preguntaatextview,0,preguntaatextview.length);
+                textView.setText(textView.getText(), TextView.BufferType.NORMAL);
+                textView.setSelection(textView.getText().length());
 
-                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
+
 
             }
         });
-
+// FIN DE HACIENDO LOS LISTVIEW QUE SE PUEDAN APRETAR
 
 //LEE EL AUTOCOMPLETE EN BUSCA DEL TOKEN PARA ESTE CASO ES UN ESPACIO
         textView.setTokenizer(new MultiAutoCompleteTextView.Tokenizer() {
