@@ -324,7 +324,7 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                             }
                     }
                 }
-
+                 textView.setText("");
             }
         });
 
