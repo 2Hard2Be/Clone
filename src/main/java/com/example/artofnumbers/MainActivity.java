@@ -105,11 +105,10 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-
-
-
+                        String previously = textView.getText().toString();
                         String item = ((TextView) view).getText().toString();
-                        char[] resultadoatextview = item.toCharArray();
+                        String novotexto = previously+item;
+                        char[] resultadoatextview = novotexto.toCharArray();
                         textView.setText(resultadoatextview, 0, resultadoatextview.length);
                         textView.setText(textView.getText(), TextView.BufferType.NORMAL);
                         textView.setSelection(textView.getText().length());
@@ -122,9 +121,10 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-
+                String previously = textView.getText().toString();
                 String item = ((TextView) view).getText().toString();
-                char [] preguntaatextview = item.toCharArray();
+                String novotexto = previously+item;
+                char [] preguntaatextview = novotexto.toCharArray();
                 textView.setText(preguntaatextview,0,preguntaatextview.length);
                 textView.setText(textView.getText(), TextView.BufferType.NORMAL);
                 textView.setSelection(textView.getText().length());
