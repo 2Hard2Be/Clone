@@ -32,6 +32,10 @@ public String comando;
                 quees = "c";
                 break;
 
+            case "help":
+                quees = "help";
+                break;
+
             default:
 
             int i;

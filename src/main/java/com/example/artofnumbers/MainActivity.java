@@ -2,6 +2,7 @@ package com.example.artofnumbers;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.location.GpsStatus;
 import android.os.Handler;
 import android.sax.StartElementListener;
@@ -26,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
@@ -65,6 +67,9 @@ public class MainActivity extends Activity {
     "BTU(British thermal unit)","j(joule)","cal(calorie)","kcal(kilocalorie)","kj(kilojoule)",
 
     "millisecond","s(second)","min(minute)","hr(hour)","d(day)","month","yr(year)"};
+
+    public final static String EXTRA_MESSAGE = "LLEGO LA AYUDA";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,6 +255,17 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
                             break;
 
+                        case "help":
+
+
+                            Intent intentayuda = new Intent (MainActivity.this, DisplayMessageActivity.class);
+                            EditText mensajeayuda = (EditText) findViewById(R.id.ayuda);
+                            String textoayuda = getResources().getString(R.string.help);
+                            intentayuda.putExtra(EXTRA_MESSAGE, textoayuda);
+                            startActivity(intentayuda);
+
+                            break;
+
                         case "suma":
                         case "resta":
                         case "multiplicacion":
@@ -381,5 +397,12 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
         }
     }
 
+public void sendMessage(View view){
 
+    Intent intentayuda = new Intent (this, DisplayMessageActivity.class);
+    EditText mensajeayuda = (EditText) findViewById(R.id.ayuda);
+    String textoayuda = mensajeayuda.getText().toString();
+    intentayuda.putExtra(EXTRA_MESSAGE, textoayuda);
+    startActivity(intentayuda);
+}
 }
