@@ -66,9 +66,11 @@ public class MainActivity extends Activity {
 
     "BTU(British thermal unit)","j(joule)","cal(calorie)","kcal(kilocalorie)","kj(kilojoule)",
 
-    "millisecond","s(second)","min(minute)","hr(hour)","d(day)","month","yr(year)"};
+    "millisecond","s(second)","min(minute)","hr(hour)","d(day)","month","yr(year)",
 
-    public final static String EXTRA_MESSAGE = "LLEGO LA AYUDA";
+    "help"};
+
+    public final static String EXTRA_MESSAGE = "";
 
 
     @Override
@@ -259,11 +261,10 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
 
                             Intent intentayuda = new Intent (MainActivity.this, DisplayMessageActivity.class);
-                            EditText mensajeayuda = (EditText) findViewById(R.id.ayuda);
+
                             String textoayuda = getResources().getString(R.string.help);
                             intentayuda.putExtra(EXTRA_MESSAGE, textoayuda);
                             startActivity(intentayuda);
-
                             break;
 
                         case "suma":

@@ -153,7 +153,7 @@ public class Calculadora {
                     break;
                     default:
 
-                        calculostr = "use two arguments per calculation ";
+                        calculostr = "check the syntax";
 
 
                 }

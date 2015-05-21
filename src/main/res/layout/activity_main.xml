@@ -14,9 +14,9 @@ android:maxLength="26"
 android:hint="@string/escribe"
 android:layout_width="400sp"
 android:layout_height="wrap_content" android:focusable="true"
-    android:background="#000000"
-    android:textColor="#ffffff"
-    android:textSize="25sp"
+    android:background="@color/negro"
+    android:textColor="@color/blanco"
+    android:textSize="@dimen/tamanoletras"
 
     />
 
@@ -34,9 +34,9 @@ android:id="@+id/resultado"
 android:layout_width="400sp"
 android:layout_height="wrap_content"
 android:layout_below="@+id/auto"
-    android:background="#000000"
-    android:textColor="#ffffff"
-android:textSize="25sp"/>
+    android:background="@color/negro"
+    android:textColor="@color/blanco"
+    android:textSize="@dimen/tamanoletras"/>
 
     <ListView
         android:id="@+id/list2"
@@ -44,8 +44,9 @@ android:textSize="25sp"/>
         android:layout_height="wrap_content"
         android:text="List"
         android:layout_below="@id/resultado"
-        android:textSize="25sp"
-        android:background="#000000"
+        android:background="@color/negro"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/tamanoletras"
         />
 
     <ListView
@@ -55,8 +56,9 @@ android:textSize="25sp"/>
         android:text="List"
         android:layout_below="@id/resultado"
         android:layout_toRightOf="@id/list2"
-        android:textSize="25sp"
-        android:background="#000000"
+        android:background="@color/negro"
+        android:textColor="@color/blanco"
+        android:textSize="@dimen/tamanoletras"
         />
 
 
