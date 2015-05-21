@@ -401,7 +401,7 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 public void sendMessage(View view){
 
     Intent intentayuda = new Intent (this, DisplayMessageActivity.class);
-    EditText mensajeayuda = (EditText) findViewById(R.id.ayuda);
+    TextView mensajeayuda = (TextView) findViewById(R.id.ayuda);
     String textoayuda = mensajeayuda.getText().toString();
     intentayuda.putExtra(EXTRA_MESSAGE, textoayuda);
     startActivity(intentayuda);

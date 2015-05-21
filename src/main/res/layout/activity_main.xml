@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:paddingTop="10dp"
      >
 
 <MultiAutoCompleteTextView
@@ -48,6 +49,8 @@ android:layout_below="@+id/auto"
         android:background="@color/negro"
         android:textColor="@color/blanco"
         android:textSize="@dimen/tamanoletras"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         />
 
     <ListView
@@ -60,6 +63,8 @@ android:layout_below="@+id/auto"
         android:background="@color/negro"
         android:textColor="@color/blanco"
         android:textSize="@dimen/tamanoletras"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
         />
 
 
