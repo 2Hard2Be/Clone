@@ -9,13 +9,14 @@
 <MultiAutoCompleteTextView
 android:id="@+id/auto"
 android:completionThreshold="1"
-
+android:textCursorDrawable="@drawable/cursorcholo"
 android:maxLength="26"
 android:hint="@string/escribe"
 android:layout_width="400sp"
 android:layout_height="wrap_content" android:focusable="true"
+    android:textColorHint="@color/verde"
     android:background="@color/negro"
-    android:textColor="@color/blanco"
+    android:textColor="@color/verde"
     android:textSize="@dimen/tamanoletras"
 
     />
