@@ -211,6 +211,10 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
 
         final Button botonigual = (Button) findViewById(R.id.botonaso);
+
+
+
+
         textView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -223,6 +227,7 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                     dbcerebro.borraLasrespuestasviejas();
 
                     String informacion = textView.getText().toString();
+                   
                     StringBuilder comando1 = new StringBuilder();
                     StringBuilder numeros = new StringBuilder();
                     StringBuilder unidades = new StringBuilder();

@@ -25,14 +25,17 @@ public String comando;
 
         switch(comando) {
             case "q":
+            case "Q":
                 quees = "q";
                 break;
 
             case "c":
+            case "C":
                 quees = "c";
                 break;
 
             case "h":
+            case "H":
                 quees = "help";
                 break;
 
