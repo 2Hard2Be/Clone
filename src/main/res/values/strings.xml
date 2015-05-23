@@ -6,4 +6,6 @@
     <string name="title_activity_display_message">Help</string>
     <string name="help">This is a unit conversor that allows you to do quick basic calculations on the go. For unit conversions follow the syntax: number unit unit, e.g. 25 m cm converts 25 meters to centimeters, keep the spaces. Make basic calculations following the regular syntax of a calculator, e.g. 3+2. Type q to quit and c to clean the table of results,type help to read this again</string>
     <string name="hello_world">Hello world!</string>
+    <string name="interrogation">h : HELP</string>
+
 </resources>

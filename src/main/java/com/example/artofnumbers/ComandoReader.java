@@ -32,7 +32,7 @@ public String comando;
                 quees = "c";
                 break;
 
-            case "help":
+            case "h":
                 quees = "help";
                 break;
 
