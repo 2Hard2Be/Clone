@@ -25,22 +25,24 @@ public class CustomListAdapter1 extends ArrayAdapter<String> {
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
-
+         View v = convertView;
 
 //        verificando si contexto no es null
         if(convertView==null){
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView =inflater.inflate(R.layout.row_layout1, parent, false);
+            v =inflater.inflate(R.layout.row_layout1, parent, false);
+
+            v.setBackgroundResource(R.drawable.cuadrostexto);
         }
 
 //        Rellenando layout con los valores correctos
 
-        TextView textView = (TextView)convertView.findViewById(R.id.layoutpreg);
+        TextView textView = (TextView)v.findViewById(R.id.layoutpreg);
         String pregunta = Lista1.get(position);
         textView.setText(pregunta);
 
-        return convertView;
+        return v;
 
     }
 

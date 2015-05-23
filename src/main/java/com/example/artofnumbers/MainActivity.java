@@ -17,12 +17,14 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -209,154 +211,163 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
 
         final Button botonigual = (Button) findViewById(R.id.botonaso);
-        botonigual.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        textView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-                dbcerebro.borraLaspreguntasviejas();
-                dbcerebro.borraLasrespuestasviejas();
-
-                String informacion = textView.getText().toString();
-                StringBuilder comando1 = new StringBuilder();
-                StringBuilder numeros = new StringBuilder();
-                StringBuilder unidades = new StringBuilder();
-                StringBuilder unidadesto = new StringBuilder();
-
-                char[] texto = new char[informacion.length()];
-                informacion.getChars(0, informacion.length(), texto, 0);
-
-                int i;
-                int ii;
-                int iii;
-                int iv;
-
-                for (i = 0; i < texto.length; i++) {
-
-                    for (iv = i; iv < texto.length; iv++) {
-
-                        comando1.append(texto[iv]).toString();
-                    }
+                
+                if (actionId == EditorInfo.IME_ACTION_GO) {
 
 
-                    String comando = comando1.toString();
-                    ComandoReader comandoreader = new ComandoReader(comando);
-                    String comandoleido = comandoreader.identificaQueEs(comando);
+                    dbcerebro.borraLaspreguntasviejas();
+                    dbcerebro.borraLasrespuestasviejas();
+
+                    String informacion = textView.getText().toString();
+                    StringBuilder comando1 = new StringBuilder();
+                    StringBuilder numeros = new StringBuilder();
+                    StringBuilder unidades = new StringBuilder();
+                    StringBuilder unidadesto = new StringBuilder();
+
+                    char[] texto = new char[informacion.length()];
+                    informacion.getChars(0, informacion.length(), texto, 0);
+
+                    int i;
+                    int ii;
+                    int iii;
+                    int iv;
+
+                    for (i = 0; i < texto.length; i++) {
+
+                        for (iv = i; iv < texto.length; iv++) {
+
+                            comando1.append(texto[iv]).toString();
+                        }
 
 
-                    switch (comandoleido) {
-                        case "q":
-
-                            android.os.Process.killProcess(android.os.Process.myPid());
-                            System.exit(0);
-                            break;
-
-                        case "c":
-                            dbcerebro.deleteTodasPreguntas();
-                            dbcerebro.deleteTodasRespuestas();
-                            ArrayList<String> respuestastodas2 = dbcerebro.getAllrespuestas();
-                            ArrayList<String> preguntastodas2 = dbcerebro.getAllpreguntas();
-                            resultados.setAdapter(new CustomListAdapter1(respuestastodas2,MainActivity.this));
-                            preguntas.setAdapter(new CustomListAdapter1(preguntastodas2,MainActivity.this));
-
-                            break;
-
-                        case "help":
+                        String comando = comando1.toString();
+                        ComandoReader comandoreader = new ComandoReader(comando);
+                        String comandoleido = comandoreader.identificaQueEs(comando);
 
 
-                            Intent intentayuda = new Intent (MainActivity.this, DisplayMessageActivity.class);
+                        switch (comandoleido) {
+                            case "q":
 
-                            String textoayuda = getResources().getString(R.string.help);
-                            intentayuda.putExtra(EXTRA_MESSAGE, textoayuda);
-                            startActivity(intentayuda);
-                            break;
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(0);
+                                break;
 
-                        case "suma":
-                        case "resta":
-                        case "multiplicacion":
-                        case "division":
+                            case "c":
+                                dbcerebro.deleteTodasPreguntas();
+                                dbcerebro.deleteTodasRespuestas();
+                                ArrayList<String> respuestastodas2 = dbcerebro.getAllrespuestas();
+                                ArrayList<String> preguntastodas2 = dbcerebro.getAllpreguntas();
+                                resultados.setAdapter(new CustomListAdapter1(respuestastodas2, MainActivity.this));
+                                preguntas.setAdapter(new CustomListAdapter1(preguntastodas2, MainActivity.this));
+
+                                break;
+
+                            case "help":
 
 
-                            Calculadora calculadora = new Calculadora(comandoleido, comando);
+                                Intent intentayuda = new Intent(MainActivity.this, DisplayMessageActivity.class);
 
-                            String respuesto1 = calculadora.calcula(comandoleido, comando);
-                            String pregunto1 = comando;
+                                String textoayuda = getResources().getString(R.string.help);
+                                intentayuda.putExtra(EXTRA_MESSAGE, textoayuda);
+                                startActivity(intentayuda);
+                                break;
+
+                            case "suma":
+                            case "resta":
+                            case "multiplicacion":
+                            case "division":
+
+
+                                Calculadora calculadora = new Calculadora(comandoleido, comando);
+
+                                String respuesto1 = calculadora.calcula(comandoleido, comando);
+                                String pregunto1 = comando;
 
 //                ATENCION MANEJO DE LA BASE DE DATOS
-                            dbcerebro.addRespuesta(new RespuestaClass(respuesto1));
-                            ArrayList<String> respuestastodas1 = dbcerebro.getAllrespuestas();
+                                dbcerebro.addRespuesta(new RespuestaClass(respuesto1));
+                                ArrayList<String> respuestastodas1 = dbcerebro.getAllrespuestas();
 
-                            dbcerebro.addPregunta(new PreguntaClass(pregunto1));
-                            ArrayList<String> preguntastodas1 = dbcerebro.getAllpreguntas();
+                                dbcerebro.addPregunta(new PreguntaClass(pregunto1));
+                                ArrayList<String> preguntastodas1 = dbcerebro.getAllpreguntas();
 
 
 //          FIN DE SECCION MANEJO DE DATOS EN LA BASE
-                            TextView resultado1 = (TextView) findViewById(R.id.resultado);
-                            ListView resultados1 = (ListView) findViewById(R.id.list);
-                            ListView preguntas1 = (ListView) findViewById(R.id.list2);
+                                TextView resultado1 = (TextView) findViewById(R.id.resultado);
+                                ListView resultados1 = (ListView) findViewById(R.id.list);
+                                ListView preguntas1 = (ListView) findViewById(R.id.list2);
 
 //                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
 //                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
-                            resultado1.setText(pregunto1 + " = " + respuesto1);
-                            resultados1.setAdapter(new CustomListAdapter1(respuestastodas1,MainActivity.this));
-                            preguntas1.setAdapter(new CustomListAdapter1(preguntastodas1, MainActivity.this));
-                            i = texto.length;
-                            break;
+                                resultado1.setText(pregunto1 + " = " + respuesto1);
+                                resultados1.setAdapter(new CustomListAdapter1(respuestastodas1, MainActivity.this));
+                                preguntas1.setAdapter(new CustomListAdapter1(preguntastodas1, MainActivity.this));
+                                i = texto.length;
+                                break;
 
-                        default:
-
-
-                            if (texto[i] != ' ') {
-                                numeros.append(texto[i]).toString();
-                            } else {
+                            default:
 
 
-                                for (ii = i + 1; ii < texto.length; ii++) {
-                                    if (texto[ii] != ' ') {
-                                        unidades.append(texto[ii]).toString();
-                                    } else {
+                                if (texto[i] != ' ') {
+                                    numeros.append(texto[i]).toString();
+                                } else {
 
 
-                                        for (iii = ii + 1; iii < texto.length; iii++) {
+                                    for (ii = i + 1; ii < texto.length; ii++) {
+                                        if (texto[ii] != ' ') {
+                                            unidades.append(texto[ii]).toString();
+                                        } else {
 
-                                            unidadesto.append(texto[iii]).toString();
+
+                                            for (iii = ii + 1; iii < texto.length; iii++) {
+
+                                                unidadesto.append(texto[iii]).toString();
+                                            }
+
+                                            i = texto.length;
+                                            String numero = numeros.toString();
+                                            String unidad = unidades.toString();
+                                            String unidadto = unidadesto.toString();
+                                            convertidor conversor = new convertidor(numero, unidad, unidadto);
+
+                                            String respuesto = conversor.convierte(numero, unidad, unidadto);
+                                            String pregunto = numero + " " + unidad + " " + unidadto;
+
+//                ATENCION MANEJO DE LA BASE DE DATOS
+                                            dbcerebro.addRespuesta(new RespuestaClass(respuesto));
+                                            ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
+
+                                            dbcerebro.addPregunta(new PreguntaClass(pregunto));
+                                            ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
+
+
+//          FIN DE SECCION MANEJO DE DATOS EN LA BASE
+                                            TextView resultado = (TextView) findViewById(R.id.resultado);
+                                            ListView resultados = (ListView) findViewById(R.id.list);
+                                            ListView preguntas = (ListView) findViewById(R.id.list2);
+
+//                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
+//                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
+                                            resultado.setText(numeros + " " + unidades + " " + "is equivalent to" + " " + respuesto + " " + unidadesto);
+                                            resultados.setAdapter(new CustomListAdapter1(respuestastodas, MainActivity.this));
+                                            preguntas.setAdapter(new CustomListAdapter1(preguntastodas, MainActivity.this));
+                                            break;
+
+
                                         }
-
-                                        i = texto.length;
-                                        String numero = numeros.toString();
-                                        String unidad = unidades.toString();
-                                        String unidadto = unidadesto.toString();
-                                        convertidor conversor = new convertidor(numero, unidad, unidadto);
-
-                                        String respuesto = conversor.convierte(numero, unidad, unidadto);
-                                        String pregunto = numero + " " + unidad + " " + unidadto;
-
-//                ATENCION MANEJO DE LA BASE DE DATOS
-                                        dbcerebro.addRespuesta(new RespuestaClass(respuesto));
-                                        ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
-
-                                        dbcerebro.addPregunta(new PreguntaClass(pregunto));
-                                        ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
-
-
-//          FIN DE SECCION MANEJO DE DATOS EN LA BASE
-                                        TextView resultado = (TextView) findViewById(R.id.resultado);
-                                        ListView resultados = (ListView) findViewById(R.id.list);
-                                        ListView preguntas = (ListView) findViewById(R.id.list2);
-
-//                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
-//                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
-                                        resultado.setText(numeros + " " + unidades + " " + "is equivalent to" + " " + respuesto + " " + unidadesto);
-                                        resultados.setAdapter(new CustomListAdapter1(respuestastodas,MainActivity.this));
-                                        preguntas.setAdapter(new CustomListAdapter1(preguntastodas, MainActivity.this));
-                                        break;
-
-
                                     }
                                 }
-                            }
+                        }
                     }
+                    textView.setText("");
+                    return true;
                 }
-                 textView.setText("");
+                return false;
             }
+
         });
 
     }

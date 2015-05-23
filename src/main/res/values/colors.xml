@@ -3,7 +3,7 @@
 <resources>
 
     <color name="negro">#000000</color>
-    <color name="blanco">#ffffff</color>
+    <color name="blanco">#09ff00</color>
     <color name="transparet">#7f000000</color>
     <color name="verde">#09ff00</color>
 

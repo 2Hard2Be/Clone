@@ -19,15 +19,20 @@ android:layout_height="wrap_content" android:focusable="true"
     android:background="@color/negro"
     android:textColor="@color/verde"
     android:textSize="@dimen/tamanoletras"
-
+android:paddingLeft="-3dp"
+    android:imeOptions="actionGo"
+    android:inputType="text"
     />
 
 <Button
     android:id="@+id/botonaso"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="100sp"
+    android:layout_height="100sp"
     android:layout_toRightOf="@+id/auto"
-    android:text="="/>
+
+    android:text="="
+    android:background="@drawable/botonigual2"
+    />
 
 <TextView
 
@@ -38,11 +43,14 @@ android:layout_height="wrap_content"
 android:layout_below="@+id/auto"
     android:background="@color/negro"
     android:textColor="@color/blanco"
-    android:textSize="@dimen/tamanoletras"/>
+    android:textSize="@dimen/tamanoletras"
+    />
 
     <ListView
         android:id="@+id/list2"
         android:layout_width="200sp"
+        android:divider="@color/negro"
+        android:dividerHeight="0dp"
         android:layout_height="wrap_content"
         android:text="List"
         android:layout_below="@id/resultado"
@@ -55,6 +63,8 @@ android:layout_below="@+id/auto"
 
     <ListView
         android:id="@+id/list"
+        android:divider="@color/negro"
+        android:dividerHeight="0dp"
         android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:text="List"
