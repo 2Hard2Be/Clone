@@ -27,7 +27,7 @@ public class DisplayMessageActivity extends Activity {
         TextView textview = new TextView(this);
 
 
-        textview.setTextSize(getResources().getDimension(R.dimen.tamanoletras));
+
 
 
         textview.setText(Message);

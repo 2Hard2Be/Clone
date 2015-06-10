@@ -3,12 +3,12 @@
 <resources>
 
     <color name="negro">#000000</color>
-    <color name="blanco">#09ff00</color>
+    <color name="blanco">#ffffff</color>
     <color name="transparet">#7f000000</color>
     <color name="verde">#09ff00</color>
     <color name="azul">#0011ff</color>
-    <color name="amarillo">#e9eadf</color>
-
+    <color name="amarillo">#ecd815</color>
+    <color name="cyan">#0bf2c9</color>
 
 
 

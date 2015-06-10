@@ -10,7 +10,7 @@
         android:layout_weight="1"
         android:textStyle="normal"
         android:textSize="@dimen/tamanoletras"
-        android:textColor="@color/amarillo"
+        android:textColor="@color/cyan"
         />
 
 

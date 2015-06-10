@@ -27,12 +27,14 @@ public class DatabaseHand extends SQLiteOpenHelper{
 
     private static final String TABLE_RESPUESTAS = "tablarespuestas";
     private static final String TABLE_PREGUNTAS = "tablapreguntas";
+    private static final String TABLE_MAGNITUDES = "tablamagnitudes";
 
 //    Nombre de las columnas de la tabla de respuestas y preguntas
 
     private static final String KEY_ID = "_id";
     private static final String KEY_RESPUESTAS = "columnarespuestas";
     private static final String KEY_PREGUNTAS = "columnapreguntas";
+    private static final String KEY_MAGNITUDES = "columnamagnitudes";
 
     public DatabaseHand(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

@@ -23,6 +23,7 @@ public String comando;
         comando.getChars(0,comando.length(),comandolectura,0);
 
 
+
         switch(comando) {
             case "q":
             case "Q":
