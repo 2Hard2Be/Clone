@@ -1,5 +1,8 @@
 package com.example.artofnumbers;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 /**
  * Created by Peto-1 on 4/1/2015.
  */
@@ -255,7 +258,12 @@ public class Energia {
 
         }
 
-        respuestastr = String.valueOf(respuestan);
+        DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator('.');
+        otherSymbols.setGroupingSeparator(',');
+
+        DecimalFormat numberFormat = new DecimalFormat("#.####",otherSymbols);
+        respuestastr = String.valueOf(numberFormat.format(respuestan));
         return respuestastr;
 
     }

@@ -1,5 +1,8 @@
 package com.example.artofnumbers;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 /**
  * Created by Peto-1 on 2/19/2015.
  */
@@ -563,9 +566,13 @@ public class Volumen {
 
         }
 
-        respuestastr = String.valueOf(respuestan);
-        return respuestastr;
+        DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator('.');
+        otherSymbols.setGroupingSeparator(',');
 
+        DecimalFormat numberFormat = new DecimalFormat("#.####",otherSymbols);
+        respuestastr = String.valueOf(numberFormat.format(respuestan));
+        return respuestastr;
     }
 
 }

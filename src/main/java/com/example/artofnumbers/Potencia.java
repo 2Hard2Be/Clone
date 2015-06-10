@@ -1,5 +1,8 @@
 package com.example.artofnumbers;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 /**
  * Created by Peto-1 on 3/12/2015.
  */
@@ -190,10 +193,13 @@ public class Potencia {
                 respuestan = Double.parseDouble(errorunits);
 
         }
+        DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols();
+        otherSymbols.setDecimalSeparator('.');
+        otherSymbols.setGroupingSeparator(',');
 
-        respuestastr = String.valueOf(respuestan);
+        DecimalFormat numberFormat = new DecimalFormat("#.####",otherSymbols);
+        respuestastr = String.valueOf(numberFormat.format(respuestan));
         return respuestastr;
-
     }
 
 }
