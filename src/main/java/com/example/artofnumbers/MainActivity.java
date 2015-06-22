@@ -316,7 +316,7 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
                             default:
 
-//                               DESDE AQUI BORRA
+//                               DESDE AQUI BORRA ***********************
 
 //                                LA REVISION DE CUANTOS ESPACIOS TIENE
 
@@ -346,7 +346,30 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
                                 if (contadorespacio == 1){
 
-                                    String mensaje = String.valueOf(posespacio) + locker1;
+                                    StringBuilder numerounespacio = new StringBuilder();
+                                    StringBuilder comandounespacio = new StringBuilder();
+                                    int vii ;
+                                    int viii;
+
+                                    for (vii = 0; vii < posespacio ; vii++) {
+
+                                        numerounespacio.append(texto[vii]).toString();
+
+                                    }
+
+                                    for (viii = posespacio+1 ; viii < texto.length ; viii++) {
+
+                                        comandounespacio.append(texto[viii]).toString();
+
+                                    }
+
+                                    String stringnumeroespacio = numerounespacio.toString();
+                                    String stringcomandounespacio = comandounespacio.toString();
+
+
+                                        String mensaje = String.valueOf(posespacio) + locker1 + " " + stringnumeroespacio + " "
+                                                + stringcomandounespacio;
+
                                     TextView resultado = (TextView) findViewById(R.id.resultado);
                                     resultado.setText(mensaje);
 
@@ -355,7 +378,11 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
                                 else {
 
-//                                HASTA AQUI BORRA
+
+
+//                                HASTA AQUI BORRA ********************************************
+
+
                                     if (texto[i] != ' ') {
                                         numeros.append(texto[i]).toString();
                                     } else {
