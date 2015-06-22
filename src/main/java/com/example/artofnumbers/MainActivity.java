@@ -241,6 +241,7 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                     int iii;
                     int iv;
 
+
                     for (i = 0; i < texto.length; i++) {
 
                         for (iv = i; iv < texto.length; iv++) {
@@ -315,53 +316,100 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
                             default:
 
+//                               DESDE AQUI BORRA
 
-                                if (texto[i] != ' ') {
-                                    numeros.append(texto[i]).toString();
-                                } else {
+//                                LA REVISION DE CUANTOS ESPACIOS TIENE
+
+                                int vi;
+                                int posespacio = 0;
+                                int locker1 = 0;
+                                int contadorespacio=0;
+                                for (vi = 0; vi < texto.length; vi++) {
+
+                                    if (texto[vi] == ' ') {
+
+                                        contadorespacio = contadorespacio + 1;
+
+                                        if (locker1 == 0) {
+
+                                                posespacio = vi;
+                                                locker1 = 1;
+
+                                        }
+                                    }
+
+                                }
+//                                HASTA AQUI REVISO CUANTOS EASPACIOS TIENE
+
+//                                AQUI INICIARA UNA EVALUACION DE SI TIENE UN SOLO ESPACIO EL COMANDO PARA PODER GENERAR
+//                                LOS METODOS DE UN SOLO ESPACIO DE LISTAS
+
+                                if (contadorespacio == 1){
+
+                                    String mensaje = String.valueOf(posespacio) + locker1;
+                                    TextView resultado = (TextView) findViewById(R.id.resultado);
+                                    resultado.setText(mensaje);
 
 
-                                    for (ii = i + 1; ii < texto.length; ii++) {
-                                        if (texto[ii] != ' ') {
-                                            unidades.append(texto[ii]).toString();
-                                        } else {
+                                }
+
+                                else {
+
+//                                HASTA AQUI BORRA
+                                    if (texto[i] != ' ') {
+                                        numeros.append(texto[i]).toString();
+                                    } else {
 
 
-                                            for (iii = ii + 1; iii < texto.length; iii++) {
+                                        for (ii = i + 1; ii <= texto.length; ii++) {
+                                            if (texto[ii] != ' ') {
 
-                                                unidadesto.append(texto[iii]).toString();
-                                            }
 
-                                            i = texto.length;
-                                            String numero = numeros.toString();
-                                            String unidad = unidades.toString();
-                                            String unidadto = unidadesto.toString();
-                                            convertidor conversor = new convertidor(numero, unidad, unidadto);
+                                                unidades.append(texto[ii]).toString();
 
-                                            String respuesto = conversor.convierte(numero, unidad, unidadto);
-                                            String pregunto = numero + " " + unidad + " " + unidadto;
+                                            } else {
+
+
+//LO QUE ESTA ADENTRO DE ESTE FOR ES EL TEXTO ORGINAL
+                                                for (iii = ii + 1; iii < texto.length; iii++) {
+
+                                                    unidadesto.append(texto[iii]).toString();
+                                                }
+
+                                                i = texto.length;
+                                                String numero = numeros.toString();
+                                                String unidad = unidades.toString();
+                                                String unidadto = unidadesto.toString();
+                                                convertidor conversor = new convertidor(numero, unidad, unidadto);
+
+                                                String respuesto = conversor.convierte(numero, unidad, unidadto);
+                                                String pregunto = numero + " " + unidad + " " + unidadto;
 
 //                ATENCION MANEJO DE LA BASE DE DATOS
-                                            dbcerebro.addRespuesta(new RespuestaClass(respuesto));
-                                            ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
+                                                dbcerebro.addRespuesta(new RespuestaClass(respuesto));
+                                                ArrayList<String> respuestastodas = dbcerebro.getAllrespuestas();
 
-                                            dbcerebro.addPregunta(new PreguntaClass(pregunto));
-                                            ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
+                                                dbcerebro.addPregunta(new PreguntaClass(pregunto));
+                                                ArrayList<String> preguntastodas = dbcerebro.getAllpreguntas();
 
 
 //          FIN DE SECCION MANEJO DE DATOS EN LA BASE
-                                            TextView resultado = (TextView) findViewById(R.id.resultado);
-                                            ListView resultados = (ListView) findViewById(R.id.list);
-                                            ListView preguntas = (ListView) findViewById(R.id.list2);
+                                                TextView resultado = (TextView) findViewById(R.id.resultado);
+                                                ListView resultados = (ListView) findViewById(R.id.list);
+                                                ListView preguntas = (ListView) findViewById(R.id.list2);
 
 //                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
 //                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
-                                            resultado.setText(numeros + " " + unidades + " " + "is equivalent to" + " " + respuesto + " " + unidadesto);
-                                            resultados.setAdapter(new CustomListAdapter2(respuestastodas, MainActivity.this));
-                                            preguntas.setAdapter(new CustomListAdapter1(preguntastodas, MainActivity.this));
-                                            break;
+                                                resultado.setText(numeros + " " + unidades + " " + "is equivalent to" + " " + respuesto + " " + unidadesto);
+                                                resultados.setAdapter(new CustomListAdapter2(respuestastodas, MainActivity.this));
+                                                preguntas.setAdapter(new CustomListAdapter1(preguntastodas, MainActivity.this));
 
 
+// HASTA AQUI PROBABLEMNTE SINO DA UN ERROR DE LLAVES
+                                                break;
+
+
+                                            }
                                         }
                                     }
                                 }

@@ -3,6 +3,7 @@ package com.example.artofnumbers;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -344,4 +345,66 @@ public class convertidor {
 
     }
 
+
+    public String convierte1(String c, String u) {
+
+//        El constructor de solo dos argumentos devolvera el string correspondiente de la magnitud deseada mediante
+//       switch , ese string sera el que disparara la lista deseada dentro de
+//        main, el cual ejecutara el llamado a la lista de unidades de esa magnitud para las unidades de la cifra
+//        al dar clic debera enviar la seleccionada a la pantalla y desplegar la otra lista de las unidades a convertir
+//        al dar clic a la segunda lista se desplegara la respuesta, posiblemente se necesite otra clase para manejar listas unicamente
+//        probar si al mismo tiempo se colocan mensajes de instrucciones en una de las pantallas, por ejemplo
+//        para "select units for the data"
+//        antes validar que la primera String c, sea realmente un numero para no perder el tiempo
+
+        cifra = c;
+        unidad = u;
+        Double numero = Double.valueOf(cifra);
+        switch (unidad) {
+
+            case "mass":
+            case "Mass":
+                respuestastring = "masa";
+                break;
+
+            case "Volume":
+            case "volume":
+                respuestastring = "volumen";
+                break;
+
+            case "Energy":
+            case "energy":
+                respuestastring = "energia";
+                break;
+
+            case "Length":
+            case "length":
+                respuestastring = "longitud";
+                break;
+
+            case "Power":
+            case "power":
+                respuestastring= "potencia";
+                break;
+
+            case "Pressure":
+            case "pressure":
+                respuestastring= "presion";
+                break;
+
+            case "Temperature":
+            case "temperature":
+                respuestastring = "temperatura";
+                break;
+
+            case "Time":
+            case "time":
+                respuestastring = "tiempo";
+                break;
+
+            default:
+                respuestastring = "more than two";
+        }
+        return respuestastring;
+    }
 }
