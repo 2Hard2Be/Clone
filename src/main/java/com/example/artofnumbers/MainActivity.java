@@ -366,13 +366,20 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                                     String stringnumeroespacio = numerounespacio.toString();
                                     String stringcomandounespacio = comandounespacio.toString();
 
+                                    convertidor conversor1 = new convertidor(stringnumeroespacio, stringcomandounespacio);
+                                    ArrayList<String> key = conversor1.convierte1(stringnumeroespacio, stringcomandounespacio);
 
-                                        String mensaje = String.valueOf(posespacio) + locker1 + " " + stringnumeroespacio + " "
-                                                + stringcomandounespacio;
+
+                                        String mensaje = String.valueOf(posespacio) + locker1 + " " + "Choose the" + " "+ comandounespacio + " "+ "units";
 
                                     TextView resultado = (TextView) findViewById(R.id.resultado);
                                     resultado.setText(mensaje);
 
+                                    ListView resultados = (ListView) findViewById(R.id.list);
+                                    ListView preguntas = (ListView) findViewById(R.id.list2);
+
+                                    resultados.setAdapter(new CustomListAdapter2(key , MainActivity.this));
+                                    preguntas.setAdapter(new CustomListAdapter1(key , MainActivity.this));
 
                                 }
 

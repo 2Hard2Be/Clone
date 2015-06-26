@@ -1,6 +1,7 @@
 package com.example.artofnumbers;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +16,7 @@ public class convertidor {
     public String unidad;
     public String unidadto;
     public String respuestastring;
+    public ArrayList<String> respuestaarraystring = new ArrayList<String>();
 
     public convertidor(String vienecifra, String vieneunidad) {
 
@@ -346,7 +348,7 @@ public class convertidor {
     }
 
 
-    public String convierte1(String c, String u) {
+    public ArrayList<String> convierte1(String c, String u) {
 
 //        El constructor de solo dos argumentos devolvera el string correspondiente de la magnitud deseada mediante
 //       switch , ese string sera el que disparara la lista deseada dentro de
@@ -364,47 +366,114 @@ public class convertidor {
 
             case "mass":
             case "Mass":
-                respuestastring = "masa";
+
+                respuestaarraystring.add("g(gram)");
+                respuestaarraystring.add("kg(kilogram)");
+                respuestaarraystring.add("lb(pound)");
+                respuestaarraystring.add("ton(metric_ton)");
+                respuestaarraystring.add("mg(milligram)");
+                respuestaarraystring.add("ounce");
+
                 break;
 
             case "Volume":
             case "volume":
-                respuestastring = "volumen";
+
+
+                respuestaarraystring.add("l(liter)");
+                respuestaarraystring.add("m3(cubic_meter)");
+                respuestaarraystring.add("gal(US_gallon)");
+                respuestaarraystring.add("cm3(cubic_centimeter)");
+                respuestaarraystring.add("ml(milliliter)");
+                respuestaarraystring.add("hl(hectoliter)");
+
+                respuestaarraystring.add("barrel(US)");
+                respuestaarraystring.add("ft3(cubic_foot)");
+                respuestaarraystring.add("in3(cubic inch)");
+                respuestaarraystring.add("microliter");
+                respuestaarraystring.add("oz(US_liquid_ounce)");
                 break;
 
             case "Energy":
             case "energy":
-                respuestastring = "energia";
+
+
+                respuestaarraystring.add("BTU(British thermal unit)");
+                respuestaarraystring.add("j(joule)");
+                respuestaarraystring.add("cal(calorie)");
+                respuestaarraystring.add("kcal(kilocalorie)");
+                respuestaarraystring.add("kj(kilojoule)");
+
                 break;
 
             case "Length":
             case "length":
-                respuestastring = "longitud";
+
+                respuestaarraystring.add("cm(centimeter)");
+                respuestaarraystring.add("ft(feet)");
+                respuestaarraystring.add("in(inch)");
+                respuestaarraystring.add("km(kilometer)");
+                respuestaarraystring.add("m(meter)");
+                respuestaarraystring.add("mi(mile)");
+                respuestaarraystring.add("mm(millimeter)");
+                respuestaarraystring.add("yd(yard)");
                 break;
 
             case "Power":
             case "power":
-                respuestastring= "potencia";
+
+                respuestaarraystring.add( "hp(horsepower_international)");
+                respuestaarraystring.add("kW(kilowatt)");
+                respuestaarraystring.add("W(Watt)");
+                respuestaarraystring.add("ton(refrigeration)");
+
                 break;
 
             case "Pressure":
             case "pressure":
-                respuestastring= "presion";
+
+                respuestaarraystring.add("atm(standard_atmosphere)");
+                respuestaarraystring.add("bar");
+                respuestaarraystring.add("inHg(inches_of_mercury_0C)");
+                respuestaarraystring.add("inH2O(inches_of_water_4C)");
+                respuestaarraystring.add("kPa(kilopascal)");
+                respuestaarraystring.add("Pa(pascal)");
+                respuestaarraystring.add("hPa(hectopascal)");
+                respuestaarraystring.add("Torr");
+
+                respuestaarraystring.add("mbar(milibar)");
+                respuestaarraystring.add("mmHg(milimeter_of_mercury_0C)");
+                respuestaarraystring.add("mmH2O(milimeter_of_water_4C)");
+                respuestaarraystring.add("decibar(dbar)");
+                respuestaarraystring.add("psi(pounds_per_square_inch)");
                 break;
 
             case "Temperature":
             case "temperature":
-                respuestastring = "temperatura";
+
+
+                respuestaarraystring.add("Celcius");
+                respuestaarraystring.add("Fahrenheit");
+                respuestaarraystring.add("Rankine");
+                respuestaarraystring.add("Kelvin");
                 break;
 
             case "Time":
             case "time":
-                respuestastring = "tiempo";
+
+                respuestaarraystring.add("millisecond");
+                respuestaarraystring.add("s(second)");
+                respuestaarraystring.add("min(minute)");
+                respuestaarraystring.add("hr(hour)");
+                respuestaarraystring.add("d(day)");
+                respuestaarraystring.add("month");
+                respuestaarraystring.add("yr(year)");
+
                 break;
 
             default:
-                respuestastring = "more than two";
+                respuestastring = "Unknown Command";
         }
-        return respuestastring;
+        return respuestaarraystring;
     }
 }
