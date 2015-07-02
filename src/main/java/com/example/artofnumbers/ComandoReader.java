@@ -40,6 +40,25 @@ public String comando;
                 quees = "help";
                 break;
 
+            case "mass":
+            case "Mass":
+            case "Volume":
+            case "volume":
+            case "Time":
+            case "time":
+            case "Energy":
+            case "energy":
+            case "Length":
+            case "length":
+            case "Power":
+            case "power":
+            case "Pressure":
+            case "pressure":
+            case "Temperature":
+            case "temperature":
+                quees = "tablero";
+                break;
+
             default:
 
             int i;
@@ -68,6 +87,8 @@ public String comando;
                         quees = "division";
                         i=comandolectura.length;
                         break;
+
+
 
                     default:
                         quees = "nada";

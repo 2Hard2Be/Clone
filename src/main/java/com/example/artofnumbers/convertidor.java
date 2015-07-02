@@ -17,6 +17,15 @@ public class convertidor {
     public String unidadto;
     public String respuestastring;
     public ArrayList<String> respuestaarraystring = new ArrayList<String>();
+    public ArrayList<String> respuestaarraystring2 = new ArrayList<String>();
+
+
+    public convertidor(String vieneunidad) {
+
+
+        String unidad = vieneunidad;
+
+    }
 
     public convertidor(String vienecifra, String vieneunidad) {
 
@@ -348,7 +357,7 @@ public class convertidor {
     }
 
 
-    public ArrayList<String> convierte1(String c, String u) {
+    public ArrayList<String> convierte2(String c, String u) {
 
 //        El constructor de solo dos argumentos devolvera el string correspondiente de la magnitud deseada mediante
 //       switch , ese string sera el que disparara la lista deseada dentro de
@@ -476,4 +485,124 @@ public class convertidor {
         }
         return respuestaarraystring;
     }
-}
+
+    public ArrayList<String> convierte1 (String u) {
+
+        unidad = u;
+
+        switch (unidad) {
+
+            case "mass":
+            case "Mass":
+
+                respuestaarraystring2.add("g(gram)");
+                respuestaarraystring2.add("kg(kilogram)");
+                respuestaarraystring2.add("lb(pound)");
+                respuestaarraystring2.add("ton(metric_ton)");
+                respuestaarraystring2.add("mg(milligram)");
+                respuestaarraystring2.add("ounce");
+
+                break;
+
+            case "Volume":
+            case "volume":
+
+
+                respuestaarraystring2.add("l(liter)");
+                respuestaarraystring2.add("m3(cubic_meter)");
+                respuestaarraystring2.add("gal(US_gallon)");
+                respuestaarraystring2.add("cm3(cubic_centimeter)");
+                respuestaarraystring2.add("ml(milliliter)");
+                respuestaarraystring2.add("hl(hectoliter)");
+
+                respuestaarraystring2.add("barrel(US)");
+                respuestaarraystring2.add("ft3(cubic_foot)");
+                respuestaarraystring2.add("in3(cubic inch)");
+                respuestaarraystring2.add("microliter");
+                respuestaarraystring2.add("oz(US_liquid_ounce)");
+                break;
+
+            case "Energy":
+            case "energy":
+
+
+                respuestaarraystring2.add("BTU(British thermal unit)");
+                respuestaarraystring2.add("j(joule)");
+                respuestaarraystring2.add("cal(calorie)");
+                respuestaarraystring2.add("kcal(kilocalorie)");
+                respuestaarraystring2.add("kj(kilojoule)");
+
+                break;
+
+            case "Length":
+            case "length":
+
+                respuestaarraystring2.add("cm(centimeter)");
+                respuestaarraystring2.add("ft(feet)");
+                respuestaarraystring2.add("in(inch)");
+                respuestaarraystring2.add("km(kilometer)");
+                respuestaarraystring2.add("m(meter)");
+                respuestaarraystring2.add("mi(mile)");
+                respuestaarraystring2.add("mm(millimeter)");
+                respuestaarraystring2.add("yd(yard)");
+                break;
+
+            case "Power":
+            case "power":
+
+                respuestaarraystring2.add( "hp(horsepower_international)");
+                respuestaarraystring2.add("kW(kilowatt)");
+                respuestaarraystring2.add("W(Watt)");
+                respuestaarraystring2.add("ton(refrigeration)");
+
+                break;
+
+            case "Pressure":
+            case "pressure":
+
+                respuestaarraystring2.add("atm(standard_atmosphere)");
+                respuestaarraystring2.add("bar");
+                respuestaarraystring2.add("inHg(inches_of_mercury_0C)");
+                respuestaarraystring2.add("inH2O(inches_of_water_4C)");
+                respuestaarraystring2.add("kPa(kilopascal)");
+                respuestaarraystring2.add("Pa(pascal)");
+                respuestaarraystring2.add("hPa(hectopascal)");
+                respuestaarraystring2.add("Torr");
+
+                respuestaarraystring2.add("mbar(milibar)");
+                respuestaarraystring2.add("mmHg(milimeter_of_mercury_0C)");
+                respuestaarraystring2.add("mmH2O(milimeter_of_water_4C)");
+                respuestaarraystring2.add("decibar(dbar)");
+                respuestaarraystring2.add("psi(pounds_per_square_inch)");
+                break;
+
+            case "Temperature":
+            case "temperature":
+
+
+                respuestaarraystring2.add("Celcius");
+                respuestaarraystring2.add("Fahrenheit");
+                respuestaarraystring2.add("Rankine");
+                respuestaarraystring2.add("Kelvin");
+                break;
+
+            case "Time":
+            case "time":
+
+                respuestaarraystring2.add("millisecond");
+                respuestaarraystring2.add("s(second)");
+                respuestaarraystring2.add("min(minute)");
+                respuestaarraystring2.add("hr(hour)");
+                respuestaarraystring2.add("d(day)");
+                respuestaarraystring2.add("month");
+                respuestaarraystring2.add("yr(year)");
+
+                break;
+
+            default:
+                respuestastring = "Unknown Command";
+        }
+        return respuestaarraystring2;
+    }
+
+    }

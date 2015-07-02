@@ -70,7 +70,9 @@ public class MainActivity extends Activity {
 
     "millisecond","s(second)","min(minute)","hr(hour)","d(day)","month","yr(year)",
 
-    "help"};
+    "help",
+
+    "Mass","Volume","Time","Energy","Length","Power","Pressure","Temperature"};
 
     public final static String EXTRA_MESSAGE = "";
 
@@ -314,6 +316,27 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                                 i = texto.length;
                                 break;
 
+                            case "tablero":
+
+                                convertidor conversor1 = new convertidor(comando);
+                                ArrayList<String> key = conversor1.convierte1(comando);
+
+
+                                String mensaje = "Type the number and choose the" + " "+ comando + " "+ "units";
+
+
+                                TextView resultado11 = (TextView) findViewById(R.id.resultado);
+                                resultado11.setText(mensaje);
+
+                                ListView resultados11 = (ListView) findViewById(R.id.list);
+                                ListView preguntas11 = (ListView) findViewById(R.id.list2);
+
+                                resultados11.setAdapter(new CustomListAdapter3(key , MainActivity.this));
+                                preguntas11.setAdapter(new CustomListAdapter4(key , MainActivity.this));
+
+
+                                break;
+
                             default:
 
 //                               DESDE AQUI BORRA ***********************
@@ -346,6 +369,8 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
                                 if (contadorespacio == 1){
 
+
+
                                     StringBuilder numerounespacio = new StringBuilder();
                                     StringBuilder comandounespacio = new StringBuilder();
                                     int vii ;
@@ -366,20 +391,25 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                                     String stringnumeroespacio = numerounespacio.toString();
                                     String stringcomandounespacio = comandounespacio.toString();
 
-                                    convertidor conversor1 = new convertidor(stringnumeroespacio, stringcomandounespacio);
-                                    ArrayList<String> key = conversor1.convierte1(stringnumeroespacio, stringcomandounespacio);
 
 
-                                        String mensaje = String.valueOf(posespacio) + locker1 + " " + "Choose the" + " "+ comandounespacio + " "+ "units";
 
-                                    TextView resultado = (TextView) findViewById(R.id.resultado);
-                                    resultado.setText(mensaje);
 
-                                    ListView resultados = (ListView) findViewById(R.id.list);
-                                    ListView preguntas = (ListView) findViewById(R.id.list2);
+                                    convertidor conversor2 = new convertidor(stringnumeroespacio, stringcomandounespacio);
+                                    ArrayList<String> key2 = conversor2.convierte2(stringnumeroespacio, stringcomandounespacio);
 
-                                    resultados.setAdapter(new CustomListAdapter2(key , MainActivity.this));
-                                    preguntas.setAdapter(new CustomListAdapter1(key , MainActivity.this));
+
+                                        String mensaje2 = "Choose the" + " "+ comandounespacio + " "+ "units";
+
+
+                                    TextView resultado2 = (TextView) findViewById(R.id.resultado);
+                                    resultado2.setText(mensaje2);
+
+                                    ListView resultados2 = (ListView) findViewById(R.id.list);
+                                    ListView preguntas2 = (ListView) findViewById(R.id.list2);
+
+                                    resultados2.setAdapter(new CustomListAdapter3(key2 , MainActivity.this));
+                                    preguntas2.setAdapter(new CustomListAdapter4(key2 , MainActivity.this));
 
                                 }
 
