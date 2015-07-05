@@ -3,6 +3,7 @@ package com.example.artofnumbers;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -589,10 +590,10 @@ public class convertidor {
             case "Time":
             case "time":
 
-                respuestaarraystring2.add("millisecond");
+                respuestaarraystring2.add("ms(millisecond)");
                 respuestaarraystring2.add("s(second)");
                 respuestaarraystring2.add("min(minute)");
-                respuestaarraystring2.add("hr(hour)");
+                respuestaarraystring2.add("h(hour)");
                 respuestaarraystring2.add("d(day)");
                 respuestaarraystring2.add("month");
                 respuestaarraystring2.add("yr(year)");
@@ -602,6 +603,8 @@ public class convertidor {
             default:
                 respuestastring = "Unknown Command";
         }
+
+        Collections.sort(respuestaarraystring2);
         return respuestaarraystring2;
     }
 

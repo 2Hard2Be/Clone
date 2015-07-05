@@ -6,6 +6,7 @@
     tools:context=".MainActivity"
     android:paddingTop="5dp"
     android:background="@drawable/customborder"
+
      >
 
 <MultiAutoCompleteTextView

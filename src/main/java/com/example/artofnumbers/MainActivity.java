@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,7 +69,7 @@ public class MainActivity extends Activity {
 
     "BTU(British thermal unit)","j(joule)","cal(calorie)","kcal(kilocalorie)","kj(kilojoule)",
 
-    "millisecond","s(second)","min(minute)","hr(hour)","d(day)","month","yr(year)",
+    "ms(millisecond)","s(second)","min(minute)","h(hour)","d(day)","month","yr(year)",
 
     "help",
 
@@ -80,6 +81,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
 
 
