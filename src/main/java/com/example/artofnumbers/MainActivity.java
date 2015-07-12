@@ -292,9 +292,9 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                             case "division":
 
 
-                                Calculadora calculadora = new Calculadora(comandoleido, comando);
+                                CalculadoraAdvanced calculadora = new CalculadoraAdvanced(comando);
 
-                                String respuesto1 = calculadora.calcula(comandoleido, comando);
+                                String respuesto1 = calculadora.calculaAdvanced(comando);
                                 String pregunto1 = comando;
 
 //                ATENCION MANEJO DE LA BASE DE DATOS
