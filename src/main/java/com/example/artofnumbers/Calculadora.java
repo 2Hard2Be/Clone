@@ -86,6 +86,8 @@ public class Calculadora {
 
         switch (validaciondesignos) {
 
+
+
             case 1:
                 if (posigno != 0 && posigno != lecturaraw.length - 1) {
 
@@ -151,9 +153,84 @@ public class Calculadora {
                         calculostr = " ";
                     }
                     break;
+
+            case 2:
+
+                if (lecturaraw[0]=='-'){
+
+                if (posigno != lecturaraw.length - 1) {
+
+                    for (ii = 0; ii < posigno; ii++) {
+                        argumento1.append(lecturaraw[ii]).toString();
+
+
+                    }
+                    iii = posigno + 1;
+                    while (iii < lecturaraw.length) {
+
+                        argumento2.append(lecturaraw[iii]).toString();
+                        iii = iii + 1;
+                    }
+
+                    String arg1string = argumento1.toString();
+                    String arg2string = argumento2.toString();
+
+                    if (isDouble(arg1string) && isDouble(arg2string)) {
+
+                        Double arg1double = Double.valueOf(arg1string);
+                        Double arg2double = Double.valueOf(arg2string);
+
+
+                        switch (operacion) {
+                            case "suma":
+                                calculodouble = arg1double + arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
+
+                            case "resta":
+                                calculodouble = arg1double - arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
+
+                            case "multiplicacion":
+                                calculodouble = arg1double * arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
+
+                            case "division":
+                                calculodouble = arg1double / arg2double;
+                                calculostr = calculodouble.toString();
+                                break;
+
+                            default:
+                                calculostr = "error";
+
+
+                        }
+
+
+                    }
+
+                    else{
+
+                        calculostr = "use numbers for calculations";
+
+                    }
+
+                } else {
+
+                    calculostr = " ";
+                }}
+
+                else { calculostr = "check operator position";}
+
+                break;
+
+
+
                     default:
 
-                        calculostr = "check the syntax";
+                        calculostr = "check the syntax"+" "+validaciondesignos+" "+longitudstring+" "+raw;
 
 
                 }

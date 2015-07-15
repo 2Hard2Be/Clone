@@ -7,14 +7,8 @@ import java.util.Arrays;
  */
 public class CalculadoraAdvanced {
 
-    public String calculostr;
-    public Double calculodouble;
-    public String operacion;
+
     public String raw;
-    public String arg1string;
-    public String arg2string;
-
-
 
 
     public CalculadoraAdvanced (String lacarnita ){
@@ -37,15 +31,14 @@ public class CalculadoraAdvanced {
         int i=0;
         int ii;
         int operacion = 0;
-        int tester;
-        int tester2;
+
 
 
         String digasenor;
         String numerostring;
 
         int numeroref = 0;
-        Float numerofloat;
+
 
 
         while (i < lecturaraw.length) {
