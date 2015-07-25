@@ -27,14 +27,22 @@ public class DatabaseHand extends SQLiteOpenHelper{
 
     private static final String TABLE_RESPUESTAS = "tablarespuestas";
     private static final String TABLE_PREGUNTAS = "tablapreguntas";
-    private static final String TABLE_MAGNITUDES = "tablamagnitudes";
+    private static final String TABLE_EQUATIONS = "tablaecuaciones";
 
 //    Nombre de las columnas de la tabla de respuestas y preguntas
 
     private static final String KEY_ID = "_id";
     private static final String KEY_RESPUESTAS = "columnarespuestas";
     private static final String KEY_PREGUNTAS = "columnapreguntas";
-    private static final String KEY_MAGNITUDES = "columnamagnitudes";
+    private static final String KEY_RESPEQ = "columnarespuestasecuaciones";
+    private static final String KEY_PARENABIERTO = "columnaparentesisabierto";
+    private static final String KEY_PARENCERRADO = "columnaparentesiscerrado";
+    private static final String KEY_SUMA = "columnasumas";
+    private static final String KEY_RESTA = "columnarespuestas";
+    private static final String KEY_MULTI = "columnamulti";
+    private static final String KEY_DIVI = "columnadivi";
+    private static final String KEY_INICIO = "columnainicio";
+    private static final String KEY_FIN = "columnafinal";
 
     public DatabaseHand(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,7 +59,14 @@ public class DatabaseHand extends SQLiteOpenHelper{
 
         String CREATE_TABLE_PREGUNTAS = "CREATE TABLE " + TABLE_PREGUNTAS + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
                 KEY_PREGUNTAS + " STRING" + ")";
+
         db.execSQL(CREATE_TABLE_PREGUNTAS);
+
+        String CREATE_TABLE_EQUATIONS = "CREATE TABLE " + TABLE_EQUATIONS + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
+                KEY_RESPEQ + " FLOAT," + KEY_PARENABIERTO + " INTEGER,"+ KEY_PARENCERRADO + " INTEGER,"+ KEY_SUMA + " INTEGER,"
+                + KEY_RESTA + " INTEGER,"+ KEY_MULTI + " INTEGER,"+ KEY_DIVI + " INTEGER,"+ KEY_INICIO + " INTEGER,"+ KEY_FIN+ " INTEGER,"+")";
+
+        db.execSQL(CREATE_TABLE_EQUATIONS);
     }
 
 //    Upgrade database
@@ -61,6 +76,7 @@ public class DatabaseHand extends SQLiteOpenHelper{
 
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESPUESTAS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREGUNTAS);
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_EQUATIONS);
 
 //        Crear la tabla de nuevo
 

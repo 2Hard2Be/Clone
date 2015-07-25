@@ -230,7 +230,7 @@ public class Calculadora {
 
                     default:
 
-                        calculostr = "check the syntax"+" "+validaciondesignos+" "+longitudstring+" "+raw;
+                        calculostr = "check the syntax"+raw;
 
 
                 }

@@ -312,7 +312,7 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
 
 //                Ver anotaciones al final de clase convertidor, es mejor colocar las fraces
 //                "is equivalente to" en la clase convertidor para tener versatilidad en respuestas
-                                resultado1.setText(pregunto1 + " = " + respuesto1);
+                                resultado1.setText(pregunto1+ " = " + respuesto1);
                                 resultados1.setAdapter(new CustomListAdapter2(respuestastodas1, MainActivity.this));
                                 preguntas1.setAdapter(new CustomListAdapter1(preguntastodas1, MainActivity.this));
                                 i = texto.length;
