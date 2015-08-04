@@ -116,6 +116,123 @@ void addRespuesta(RespuestaClass respuesta){
 
     }
 
+    void addRespuestaEq(EquationTable eqresp){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_RESPEQ, eqresp.getRespuestaEq());// RespuestaEq
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addParenAbier(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_PARENABIERTO, pos);// Position parentesis abierto
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addParenCerrado(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_PARENCERRADO, pos);// Position parentesis cerrado
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addSuma(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_SUMA, pos);// Position simbolo de suma
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addResta(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_RESTA, pos);// Position simbolo de resta
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addMultiplicacion(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_MULTI, pos);// Position simbolo de multiplicacion
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addDivision(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_DIVI, pos);// Position simbolo de division
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addPosInicio(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_INICIO, pos);// Position de donde inicia expresion
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addPosFinal(int pos){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_FIN, pos);// Position de donde finaliza expresion
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
 //    Getting single respuesta y pregunta
 
     RespuestaClass getRespuesta(int id){
@@ -142,6 +259,106 @@ void addRespuesta(RespuestaClass respuesta){
 
     }
 
+
+    Float getRespuestaEq(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESPEQ},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        Float respuestaeq = cursor.getFloat(1);
+        return respuestaeq;
+
+    }
+
+    int geParenAbier(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_PARENABIERTO},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int parenabier = cursor.getInt(1);
+        return parenabier;
+
+    }
+
+    int geParenCerra(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_PARENCERRADO},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int parencerrado = cursor.getInt(1);
+        return parencerrado;
+
+    }
+
+    int getSuma(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_SUMA},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int operacion = cursor.getInt(1);
+        return operacion;
+
+    }
+
+    int getResta(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESTA},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int operacion = cursor.getInt(1);
+        return operacion;
+
+    }
+
+    int getMultiplicacion(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_MULTI},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int operacion = cursor.getInt(1);
+        return operacion;
+
+    }
+
+    int getDivision(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_DIVI},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int operacion = cursor.getInt(1);
+        return operacion;
+
+    }
+
+    int getPosInicio(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_INICIO},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int operacion = cursor.getInt(1);
+        return operacion;
+
+    }
+
+    int getPosFinal(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_FIN},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int operacion = cursor.getInt(1);
+        return operacion;
+
+    }
+
 //GETTING ALL RESPUESTAS Y PREGUNTAS
 
 public ArrayList<String> getAllrespuestas(){
@@ -150,7 +367,7 @@ ArrayList<String> respuestaClassListtodas = new ArrayList<String>();
 //    Query de todo
     String selectQuery = "SELECT * FROM " + TABLE_RESPUESTAS + " ORDER BY "+ KEY_ID + " DESC";
     SQLiteDatabase db = this.getWritableDatabase();
-    Cursor cursor = db.rawQuery(selectQuery,null);
+    Cursor cursor = db.rawQuery(selectQuery, null);
 //    loop de todas las columnas y agregando a la lista respuestaClassListtodas
     if (cursor.moveToFirst()){
 do {
@@ -172,7 +389,7 @@ do {
         String selectQuery = "SELECT * FROM " + TABLE_PREGUNTAS + " ORDER BY "+ KEY_ID + " DESC";
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery(selectQuery,null);
+        Cursor cursor = db.rawQuery(selectQuery, null);
 //    loop de todas las columnas y agregando a la lista preguntaClassListtodas
         if (cursor.moveToFirst()){
             do {
@@ -231,7 +448,7 @@ do {
     public void deleteTodasRespuestas(){
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("delete from "+ TABLE_RESPUESTAS);
+        db.execSQL("delete from " + TABLE_RESPUESTAS);
         db.close();
 
     }
@@ -240,6 +457,15 @@ do {
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from "+ TABLE_PREGUNTAS);
+        db.close();
+
+
+    }
+
+    public void deleteTodasEquations(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_EQUATIONS);
         db.close();
 
 
@@ -272,7 +498,7 @@ do {
 
         SQLiteDatabase db = this.getWritableDatabase();
         String eliminadorpreguntas = "delete from " + TABLE_PREGUNTAS + " where "+KEY_ID+" in (select "+ KEY_ID +
-                " from "+ TABLE_PREGUNTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 7);";
+                " from "+ TABLE_PREGUNTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 30);";
         db.execSQL(eliminadorpreguntas);
 
         db.close();}
@@ -281,7 +507,7 @@ do {
 
         SQLiteDatabase db = this.getWritableDatabase();
         String eliminadorrespuestas = "delete from " + TABLE_RESPUESTAS + " where "+KEY_ID+" in (select "+ KEY_ID +
-                " from "+ TABLE_RESPUESTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 7);";
+                " from "+ TABLE_RESPUESTAS+" order by " +KEY_ID+ " desc "+ " LIMIT -1 offset 30);";
         db.execSQL(eliminadorrespuestas);
 
         db.close();}
