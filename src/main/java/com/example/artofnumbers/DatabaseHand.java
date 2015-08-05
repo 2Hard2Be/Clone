@@ -226,6 +226,21 @@ void addRespuesta(RespuestaClass respuesta){
         ContentValues values = new ContentValues();
         values.put(KEY_FIN, pos);// Position de donde finaliza expresion
 
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addBlankRespeq(EquationTable value){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_RESPEQ, " ");// Position de donde finaliza expresion
+
+
 //    INSERTANDO FILA
 
         db.insert(TABLE_EQUATIONS, null, values);
@@ -271,7 +286,7 @@ void addRespuesta(RespuestaClass respuesta){
 
     }
 
-    int geParenAbier(int id){
+    int getParenAbier(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_PARENABIERTO},
                 KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
@@ -282,7 +297,17 @@ void addRespuesta(RespuestaClass respuesta){
 
     }
 
-    int geParenCerra(int id){
+    int getParenAbierMax(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT MAX("+ KEY_PARENABIERTO+") FROM "+ TABLE_EQUATIONS, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+        int parenabier = cursor.getInt(1);
+        return parenabier;
+
+    }
+
+    int getParenCerra(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_PARENCERRADO},
                 KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
@@ -405,7 +430,7 @@ do {
     }
 
 
-//    updating una unica respuesta y pregunta
+//    UPDATERS updating una unica respuesta y pregunta
 
    public int updateRespuesta(RespuestaClass respuesta) {
        SQLiteDatabase db = this.getWritableDatabase();
@@ -427,7 +452,9 @@ do {
 
     }
 
-//Deleting single respuesta y pregunta
+// DELETERS Deleting single respuesta y pregunta
+
+
     public void deleteRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_RESPUESTAS, KEY_ID + " = ?",
@@ -440,6 +467,96 @@ do {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PREGUNTAS, KEY_ID + " = ?",
                 new String[] {String.valueOf(pregunta.getID())});
+        db.close();
+
+    }
+
+    public void blankParenAbierto(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_PARENABIERTO, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankParenCerrado(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_PARENCERRADO, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankSuma(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_SUMA, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankResta(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_RESTA, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankMultiplicacion(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_MULTI, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankDivision(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_DIVI, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankInicio(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_INICIO, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankFin(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_FIN, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.close();
+
+    }
+
+    public void blankRespeq(EquationTable value){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_RESPEQ, " ");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
         db.close();
 
     }
