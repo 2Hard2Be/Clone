@@ -2,6 +2,8 @@ package com.example.artofnumbers;
 
 import android.content.Context;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
@@ -29,6 +31,7 @@ public EquationCalculadora(String lacarnita){
 
 
         StringBuilder paracalcular = new StringBuilder();
+        StringBuilder expresionenparentesis = new StringBuilder();
         String calcular;
         String respuestaintermedia;
         char[] characterderaw1 = new char[raw1.length()];
@@ -38,6 +41,7 @@ public EquationCalculadora(String lacarnita){
         int i;
         int ii;
         int iii;
+        int iv;
         int contparenabier=0;
         int contparencerra=0;
         int contsuma = 0;
@@ -51,6 +55,7 @@ public EquationCalculadora(String lacarnita){
         int parencerrado=1;
         int a = 0;
         int b = 0;
+
 
         EquationTable ET = new EquationTable(0);
 
@@ -116,7 +121,7 @@ public EquationCalculadora(String lacarnita){
 //                        IF DE COMPARACION DEL DATO EN VECTOR DE DATOS PARA VER SI ES PARENTESIS CERRADO
                         if(characterderaw1[poscerfinder]==')'){
                             poscer = poscerfinder;
-                            parencerrado = parencerrado+1;
+                            parencerrado = parencerrado-1;
                         }
                       poscerfinder = poscerfinder+1;
                     }
@@ -127,7 +132,7 @@ public EquationCalculadora(String lacarnita){
 //                    IF DE REVISION SI LOS VALORES QUE SE ENCUENTRAN EN a Y b NO SON PARENTESIS
 
                     if (characterderaw1[a]!='('&& characterderaw1[a]!=')'
-                            && characterderaw1[b]!=')'&& characterderaw1[b]!='('){
+                            && characterderaw1[b]!=')'&& characterderaw1[b]!='(') {
 
 //                        FOR PARA ADJUNTAR LOS VALORES EN MEDIO DE PARENTESIS PARA CALCULARLOS
 //                        DE UN SOLO LLENA EL VECTOR CONTSIMBOLO AUNQUE NO LO USEMOS DENTRO DE ESTE CASO
@@ -164,6 +169,59 @@ public EquationCalculadora(String lacarnita){
 
                     else {
 
+                        for (ii=a; ii<b; ii++){
+
+                            if (characterderaw1[ii]=='+'){
+                                contsimbolo.add(ii);
+                            }
+                            if (characterderaw1[ii]=='-'){
+                                contsimbolo.add(ii);
+                            }
+                            if (characterderaw1[ii]=='*'){
+                                contsimbolo.add(ii);
+                            }
+                            if (characterderaw1[ii]=='/'){
+                                contsimbolo.add(ii);
+                            }
+
+                        }
+//                     Ordena el vacotr contsimbolo en orden ascendente
+                        Collections.sort(contsimbolo);
+
+//                       FOR QUE BARRERA COLUMNA RESPEQ DE TABLA EQUATION EN BUSCAR DE VALORES PASO 18
+                        for (ii=a; ii<b; ii++){
+
+                        if (dbcerebro.getBooleanRespuestaEq(ii)== Boolean.FALSE){
+
+                            expresionenparentesis.append(characterderaw1[ii]).toString();
+                        }
+
+                        else {
+                            expresionenparentesis.append(dbcerebro.getRespuestaEq(ii)).toString();
+
+                            if(ii<Collections.max(contsimbolo)) {
+                                for (iv = 0; iv < contsimbolo.size(); iv++) {
+
+                                    if (ii < contsimbolo.get(iv)) {
+
+                                        ii = contsimbolo.get(iv);
+                                    }
+                                }
+
+                            }
+
+                            else {ii=b;}
+
+                        }
+
+
+                        }
+
+                        calcular = expresionenparentesis.toString();
+                        CalculadoraAdvanced calculadora= new CalculadoraAdvanced(calcular);
+                        respuestaintermedia = calculadora.calculaAdvanced(calcular);
+                        dbcerebro.addRespeqUpdated(respuestaintermedia,posab);
+                        expresionenparentesis.setLength(0);
                     }
 
 //                    BORRANDO LOS SIMOBOLOS ENTRE A Y B
@@ -194,6 +252,9 @@ public EquationCalculadora(String lacarnita){
                     a=0;
                     b=0;
                     parencerrado=1;
+                    paracalcular.setLength(0);
+//                    El unico stringbuilder que se hace cero antes es el de los parentesis EXPRESIONENPARENTESIS
+
 
 
                 }

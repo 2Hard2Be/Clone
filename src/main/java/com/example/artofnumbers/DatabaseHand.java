@@ -296,6 +296,22 @@ void addRespuesta(RespuestaClass respuesta){
 
     }
 
+    Boolean getBooleanRespuestaEq(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESPEQ},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+    }
+
     int getParenAbier(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_PARENABIERTO},
