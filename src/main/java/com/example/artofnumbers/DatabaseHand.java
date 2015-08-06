@@ -63,7 +63,7 @@ public class DatabaseHand extends SQLiteOpenHelper{
         db.execSQL(CREATE_TABLE_PREGUNTAS);
 
         String CREATE_TABLE_EQUATIONS = "CREATE TABLE " + TABLE_EQUATIONS + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
-                KEY_RESPEQ + " FLOAT," + KEY_PARENABIERTO + " INTEGER,"+ KEY_PARENCERRADO + " INTEGER,"+ KEY_SUMA + " INTEGER,"
+                KEY_RESPEQ + " STRING," + KEY_PARENABIERTO + " INTEGER,"+ KEY_PARENCERRADO + " INTEGER,"+ KEY_SUMA + " INTEGER,"
                 + KEY_RESTA + " INTEGER,"+ KEY_MULTI + " INTEGER,"+ KEY_DIVI + " INTEGER,"+ KEY_INICIO + " INTEGER,"+ KEY_FIN+ " INTEGER,"+")";
 
         db.execSQL(CREATE_TABLE_EQUATIONS);
@@ -126,6 +126,16 @@ void addRespuesta(RespuestaClass respuesta){
 
         db.insert(TABLE_EQUATIONS, null, values);
         db.close(); // cerrando la base de datos
+
+    }
+
+    public void addRespeqUpdated(String value, int pos){
+
+        ContentValues cv = new ContentValues();
+        cv.put(KEY_RESPEQ, value);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
+        db.close();
 
     }
 
@@ -471,92 +481,92 @@ do {
 
     }
 
-    public void blankParenAbierto(EquationTable value){
+    public void blankParenAbierto(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_PARENABIERTO, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankParenCerrado(EquationTable value){
+    public void blankParenCerrado(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_PARENCERRADO, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankSuma(EquationTable value){
+    public void blankSuma(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_SUMA, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankResta(EquationTable value){
+    public void blankResta(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_RESTA, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankMultiplicacion(EquationTable value){
+    public void blankMultiplicacion(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_MULTI, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankDivision(EquationTable value){
+    public void blankDivision(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_DIVI, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankInicio(EquationTable value){
+    public void blankInicio(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_INICIO, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankFin(EquationTable value){
+    public void blankFin(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_FIN, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
 
-    public void blankRespeq(EquationTable value){
+    public void blankRespeq(int pos){
 
         ContentValues cv = new ContentValues();
         cv.put(KEY_RESPEQ, " ");
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(value.getID())});
+        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
