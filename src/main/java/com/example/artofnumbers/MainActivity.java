@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
 
 // ATENCION TODO LO QUE ESTA DENTRO DE ESTE COMENTARIO ES DE LA BASE DE DATOS
 
-final DatabaseHand dbcerebro = new DatabaseHand(this);
+ final DatabaseHand dbcerebro = DatabaseHand.getInstance(theContext.getContext());
         dbcerebro.borraLaspreguntasviejas();
         dbcerebro.borraLasrespuestasviejas();
 
@@ -292,9 +292,9 @@ final DatabaseHand dbcerebro = new DatabaseHand(this);
                             case "division":
 
 
-                                CalculadoraAdvanced calculadora = new CalculadoraAdvanced(comando);
+                                EquationCalculadora calculadora = new EquationCalculadora(comando);
 
-                                String respuesto1 = calculadora.calculaAdvanced(comando);
+                                String respuesto1 = calculadora.CalculaEcuacion(comando);
                                 String pregunto1 = comando;
 
 //                ATENCION MANEJO DE LA BASE DE DATOS

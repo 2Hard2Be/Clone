@@ -12,7 +12,7 @@ import java.util.Vector;
  */
 
 //ALERTA HE
-public class EquationCalculadora extends MainActivity{
+public class EquationCalculadora{
 
     public String raw1;
 
@@ -25,8 +25,8 @@ public EquationCalculadora(String lacarnita){
 
     public String CalculaEcuacion(String raw){
 
-        final DatabaseHand dbcerebro = new DatabaseHand(this);
 
+        final DatabaseHand dbcerebro = DatabaseHand.getInstance(theContext.getContext());
         raw1 = raw;
 
 
@@ -42,6 +42,8 @@ public EquationCalculadora(String lacarnita){
         int ii;
         int iii;
         int iv;
+        int v;
+        int vi;
         int contparenabier=0;
         int contparencerra=0;
         int contsuma = 0;
@@ -67,35 +69,42 @@ public EquationCalculadora(String lacarnita){
 
             case '(':
         dbcerebro.addParenAbier(i);
+
+
         contparenabier = contparenabier+1;
 
                 break;
 
             case ')':
                 dbcerebro.addParenCerrado(i);
+
                 contparencerra = contparencerra+1;
                 break;
 
             case '+':
                 dbcerebro.addSuma(i);
+
                 contsuma = contsuma+1;
                 break;
 
             case '-':
                 dbcerebro.addResta(i);
+
                 contresta = contresta+1;
                 break;
 
             case '/':
                 dbcerebro.addDivision(i);
+
                 contdivi=contdivi+1;
 
             case '*':
                 dbcerebro.addMultiplicacion(i);
+
                 contmulti=contmulti+1;
 
                 default:
-                dbcerebro.addBlankRespeq(ET);
+                    dbcerebro.addNulls();
         }
 
         }
@@ -263,17 +272,91 @@ public EquationCalculadora(String lacarnita){
 
 //            ELSE DE QUE NO HAY PARENTESIS, SE DEBE TRATAR COMO UNA ECUACION NORMAL
             else {
+                for (v=0; v<characterderaw1.length; v++){
+
+                    if (dbcerebro.getBooleanSuma(v)==Boolean.TRUE){
+                    if (dbcerebro.getSuma(v)==v){
+                        contsimbolo.add(v);
+                    }}
+
+                    if (dbcerebro.getBooleanResta(v)==Boolean.TRUE){
+                    if (dbcerebro.getResta(v)==v){
+                        contsimbolo.add(v);
+                    }}
+
+                    if (dbcerebro.getBooleanMulti(v)==Boolean.TRUE){
+                    if (dbcerebro.getMultiplicacion(v)==v){
+                        contsimbolo.add(v);
+                    }}
+
+                    if (dbcerebro.getBooleanDivi(v)==Boolean.TRUE){
+                    if (dbcerebro.getDivision(v)==v){
+                        contsimbolo.add(v);
+                    }}
+
+                }
+
+
+                if (contsimbolo.isEmpty()){
+
+                respuesta= "Error";
+
+
+                }
+
+                else{
+
+//                     Ordena el vector contsimbolo en orden ascendente
+                Collections.sort(contsimbolo);}
+
+//                       FOR QUE BARRERA COLUMNA RESPEQ DE TABLA EQUATION EN BUSCAR DE VALORES PASO 24
+                for (vi=0; vi<characterderaw1.length; vi++){
+
+                    if (dbcerebro.getRespuestaEq(vi)== ""){
+
+                        expresionenparentesis.append(characterderaw1[vi]).toString();
+                    }
+
+                    else {
+                        expresionenparentesis.append(dbcerebro.getRespuestaEq(vi)).toString();
+
+                        if (contsimbolo.isEmpty() == Boolean.FALSE){
+                            if (vi < Collections.max(contsimbolo)) {
+                                for (iv = 0; iv < contsimbolo.size(); iv++) {
+
+                                    if (vi < contsimbolo.get(iv)) {
+
+                                        vi = contsimbolo.get(iv);
+                                    }
+                                }
+
+                            }
+                    }
+
+                        else {vi=characterderaw1.length;}
+
+                    }
+
+
+                }
+
+                calcular = expresionenparentesis.toString();
+                CalculadoraAdvanced calculadora= new CalculadoraAdvanced(calcular);
+                respuesta = calculadora.calculaAdvanced(calcular);
+                dbcerebro.addRespeqUpdated(respuesta,posab);
+                expresionenparentesis.setLength(0);
+            }
+
 
             }
 
-        }
 
 //        EL ELSE DE LA REVISION DEL NUMERO DE PARENTESIS ABIERTOS Y CERRADOS
        else {
 
             respuesta = "Check the parenthesis one could be missing";
          }
-
+        dbcerebro.deleteTodasEquations();
         return respuesta;
 
     }

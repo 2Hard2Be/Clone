@@ -17,6 +17,7 @@ public class DatabaseHand extends SQLiteOpenHelper{
 //Static variables
 //version de base de datos
 
+    private static DatabaseHand sInstance;
     private static final int DATABASE_VERSION = 1;
 
 //  nombre de base de datos
@@ -44,9 +45,26 @@ public class DatabaseHand extends SQLiteOpenHelper{
     private static final String KEY_INICIO = "columnainicio";
     private static final String KEY_FIN = "columnafinal";
 
-    public DatabaseHand(Context context){
+
+
+    public static synchronized DatabaseHand getInstance (Context context){
+
+
+        if (sInstance == null) {
+            sInstance = new DatabaseHand(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    /**
+     * Constructor should be private to prevent direct instantiation.
+     * make call to static method "getInstance()" instead.
+     */
+    private DatabaseHand(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+
 
 //    creando las tablas
 
@@ -64,7 +82,7 @@ public class DatabaseHand extends SQLiteOpenHelper{
 
         String CREATE_TABLE_EQUATIONS = "CREATE TABLE " + TABLE_EQUATIONS + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
                 KEY_RESPEQ + " STRING," + KEY_PARENABIERTO + " INTEGER,"+ KEY_PARENCERRADO + " INTEGER,"+ KEY_SUMA + " INTEGER,"
-                + KEY_RESTA + " INTEGER,"+ KEY_MULTI + " INTEGER,"+ KEY_DIVI + " INTEGER,"+ KEY_INICIO + " INTEGER,"+ KEY_FIN+ " INTEGER,"+")";
+                + KEY_RESTA + " INTEGER,"+ KEY_MULTI + " INTEGER,"+ KEY_DIVI + " INTEGER,"+ KEY_INICIO + " INTEGER,"+ KEY_FIN+ " INTEGER)";
 
         db.execSQL(CREATE_TABLE_EQUATIONS);
     }
@@ -83,6 +101,7 @@ public class DatabaseHand extends SQLiteOpenHelper{
         onCreate(db);
 
     }
+
 
 /**
  * Toda la paz(Create, Read, Update, Delete) Operations
@@ -116,11 +135,19 @@ void addRespuesta(RespuestaClass respuesta){
 
     }
 
-    void addRespuestaEq(EquationTable eqresp){
+    void addNulls(){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_RESPEQ, eqresp.getRespuestaEq());// RespuestaEq
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.put(KEY_RESPEQ, "");
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -144,6 +171,14 @@ void addRespuesta(RespuestaClass respuesta){
 
         ContentValues values = new ContentValues();
         values.put(KEY_PARENABIERTO, pos);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -156,7 +191,15 @@ void addRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_PARENCERRADO, pos);// Position parentesis cerrado
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.put(KEY_PARENCERRADO, pos);
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -169,7 +212,15 @@ void addRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_SUMA, pos);// Position simbolo de suma
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_RESPEQ);
+        values.put(KEY_SUMA, pos);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -182,7 +233,15 @@ void addRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_RESTA, pos);// Position simbolo de resta
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_SUMA);
+        values.put(KEY_RESTA, pos);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -195,7 +254,15 @@ void addRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_MULTI, pos);// Position simbolo de multiplicacion
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.put(KEY_MULTI, pos);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -208,7 +275,15 @@ void addRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_DIVI, pos);// Position simbolo de division
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.put(KEY_DIVI, pos);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -221,7 +296,15 @@ void addRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_INICIO, pos);// Position de donde inicia expresion
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.put(KEY_INICIO, pos);
+        values.putNull(KEY_FIN);
 
 //    INSERTANDO FILA
 
@@ -234,7 +317,15 @@ void addRespuesta(RespuestaClass respuesta){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_FIN, pos);// Position de donde finaliza expresion
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.put(KEY_FIN, pos);
 
 
 //    INSERTANDO FILA
@@ -244,11 +335,88 @@ void addRespuesta(RespuestaClass respuesta){
 
     }
 
-    void addBlankRespeq(EquationTable value){
+    void addBlankRespeq(){
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
-        values.put(KEY_RESPEQ, " ");// Position de donde finaliza expresion
+        values.put(KEY_RESPEQ, "");// Position de donde finaliza expresion
+
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addBlankSuma(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_SUMA, "");// Position de donde finaliza expresion
+
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addBlankResta(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_RESTA, "");// Position de donde finaliza expresion
+
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addBlankMulti(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_MULTI, "");// Position de donde finaliza expresion
+
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addBlankDivi(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_DIVI, "");// Position de donde finaliza expresion
+
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addBlankParenAbierto(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_PARENABIERTO, "");// Position de donde finaliza expresion
+
+
+//    INSERTANDO FILA
+
+        db.insert(TABLE_EQUATIONS, null, values);
+        db.close(); // cerrando la base de datos
+
+    }
+
+    void addBlankParenCerrado(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_PARENCERRADO,"");// Position de donde finaliza expresion
 
 
 //    INSERTANDO FILA
@@ -285,13 +453,21 @@ void addRespuesta(RespuestaClass respuesta){
     }
 
 
-    Float getRespuestaEq(int id){
+    String getRespuestaEq(int id){
+        String respuestaeq = new String();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESPEQ},
                 KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
-        if (cursor!= null)
-            cursor.moveToFirst();
-        Float respuestaeq = cursor.getFloat(1);
+
+        if (cursor.moveToFirst()){
+            do {
+
+                respuestaeq = cursor.getString(cursor.getColumnIndex(KEY_RESPEQ));
+
+
+            }while (cursor.moveToNext());
+        }
+
         return respuestaeq;
 
     }
@@ -299,6 +475,102 @@ void addRespuesta(RespuestaClass respuesta){
     Boolean getBooleanRespuestaEq(int id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESPEQ},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+    }
+
+    Boolean getBooleanSuma(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_SUMA},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+    }
+
+    Boolean getBooleanResta(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESTA},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+    }
+
+    Boolean getBooleanMulti(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_MULTI},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+    }
+
+    Boolean getBooleanDivi(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_DIVI},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+    }
+
+    Boolean getBooleanParenAbierto(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_PARENABIERTO},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor!= null)
+            cursor.moveToFirst();
+
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+
+    }
+
+    Boolean getBooleanParenCerrado(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_PARENCERRADO},
                 KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor!= null)
             cursor.moveToFirst();
