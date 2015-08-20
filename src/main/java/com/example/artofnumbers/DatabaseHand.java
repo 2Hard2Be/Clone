@@ -141,7 +141,7 @@ void addRespuesta(RespuestaClass respuesta){
         ContentValues values = new ContentValues();
         values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
         values.putNull(KEY_PARENCERRADO);
-        values.put(KEY_RESPEQ, "");
+        values.putNull(KEY_RESPEQ);
         values.putNull(KEY_SUMA);
         values.putNull(KEY_RESTA);
         values.putNull(KEY_DIVI);
@@ -617,13 +617,24 @@ void addRespuesta(RespuestaClass respuesta){
     }
 
     int getSuma(int id){
+
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_SUMA},
                 KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
-        if (cursor!= null)
-            cursor.moveToFirst();
-        int operacion = cursor.getInt(1);
-        return operacion;
+
+        if (cursor.moveToFirst()){
+            do {
+
+               Integer respuestaeq = cursor.getInt(cursor.getColumnIndex(KEY_SUMA));
+               return respuestaeq;
+
+            }while (cursor.moveToNext());
+        }
+
+         else{ Integer respuestaeq = null;
+            return respuestaeq;}
+
+
 
     }
 

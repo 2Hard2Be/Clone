@@ -32,11 +32,11 @@ public EquationCalculadora(String lacarnita){
 
         StringBuilder paracalcular = new StringBuilder();
         StringBuilder expresionenparentesis = new StringBuilder();
-        String calcular;
+        String calcular = new String();
         String respuestaintermedia;
         char[] characterderaw1 = new char[raw1.length()];
         raw1.getChars(0, raw1.length(), characterderaw1, 0);
-        String respuesta=" ";
+        String respuesta = new String();
         Vector<Integer> contsimbolo = new Vector<Integer>();
         int i;
         int ii;
@@ -59,17 +59,16 @@ public EquationCalculadora(String lacarnita){
         int b = 0;
 
 
-        EquationTable ET = new EquationTable(0);
+
 
 //        FOR PARA LLENAR LA TABLA ECUACION
 
         for(i=0; i<characterderaw1.length; i++){
-         ET.setID(i);
+
         switch (characterderaw1[i]){
 
             case '(':
         dbcerebro.addParenAbier(i);
-
 
         contparenabier = contparenabier+1;
 
@@ -97,11 +96,13 @@ public EquationCalculadora(String lacarnita){
                 dbcerebro.addDivision(i);
 
                 contdivi=contdivi+1;
+                break;
 
             case '*':
                 dbcerebro.addMultiplicacion(i);
 
                 contmulti=contmulti+1;
+                break;
 
                 default:
                     dbcerebro.addNulls();
@@ -274,23 +275,23 @@ public EquationCalculadora(String lacarnita){
             else {
                 for (v=0; v<characterderaw1.length; v++){
 
-                    if (dbcerebro.getBooleanSuma(v)==Boolean.TRUE){
-                    if (dbcerebro.getSuma(v)==v){
+                    if (dbcerebro.getBooleanSuma(v+1)==Boolean.TRUE){
+                    if (dbcerebro.getSuma(v+1)==v){
                         contsimbolo.add(v);
                     }}
 
-                    if (dbcerebro.getBooleanResta(v)==Boolean.TRUE){
-                    if (dbcerebro.getResta(v)==v){
+                    if (dbcerebro.getBooleanResta(v+1)==Boolean.TRUE){
+                    if (dbcerebro.getResta(v+1)==v){
                         contsimbolo.add(v);
                     }}
 
-                    if (dbcerebro.getBooleanMulti(v)==Boolean.TRUE){
-                    if (dbcerebro.getMultiplicacion(v)==v){
+                    if (dbcerebro.getBooleanMulti(v+1)==Boolean.TRUE){
+                    if (dbcerebro.getMultiplicacion(v+1)==v){
                         contsimbolo.add(v);
                     }}
 
-                    if (dbcerebro.getBooleanDivi(v)==Boolean.TRUE){
-                    if (dbcerebro.getDivision(v)==v){
+                    if (dbcerebro.getBooleanDivi(v+1)==Boolean.TRUE){
+                    if (dbcerebro.getDivision(v+1)==v){
                         contsimbolo.add(v);
                     }}
 
@@ -299,7 +300,7 @@ public EquationCalculadora(String lacarnita){
 
                 if (contsimbolo.isEmpty()){
 
-                respuesta= "Error";
+                 respuesta= "Error";
 
 
                 }
@@ -312,13 +313,13 @@ public EquationCalculadora(String lacarnita){
 //                       FOR QUE BARRERA COLUMNA RESPEQ DE TABLA EQUATION EN BUSCAR DE VALORES PASO 24
                 for (vi=0; vi<characterderaw1.length; vi++){
 
-                    if (dbcerebro.getRespuestaEq(vi)== ""){
+                    if (dbcerebro.getRespuestaEq(vi+1)== null){
 
                         expresionenparentesis.append(characterderaw1[vi]).toString();
                     }
 
                     else {
-                        expresionenparentesis.append(dbcerebro.getRespuestaEq(vi)).toString();
+                        expresionenparentesis.append(dbcerebro.getRespuestaEq(vi+1)).toString();
 
                         if (contsimbolo.isEmpty() == Boolean.FALSE){
                             if (vi < Collections.max(contsimbolo)) {
@@ -357,8 +358,8 @@ public EquationCalculadora(String lacarnita){
             respuesta = "Check the parenthesis one could be missing";
          }
         dbcerebro.deleteTodasEquations();
-        return respuesta;
 
+        return respuesta;
     }
 
 }
