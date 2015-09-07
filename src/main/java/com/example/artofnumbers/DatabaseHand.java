@@ -158,10 +158,36 @@ void addRespuesta(RespuestaClass respuesta){
 
     public void addRespeqUpdated(String value, int pos){
 
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_RESPEQ, value);
+        ContentValues values = new ContentValues();
+        values.put(KEY_RESPEQ, value);
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
+        db.update(TABLE_EQUATIONS, values, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
+        db.close();
+
+    }
+
+    public void addBlanksUpdated(int pos){
+
+        ContentValues values = new ContentValues();
+        values.putNull(KEY_RESPEQ);
+        values.putNull(KEY_PARENABIERTO);// Position parentesis abierto
+        values.putNull(KEY_PARENCERRADO);
+        values.putNull(KEY_SUMA);
+        values.putNull(KEY_RESTA);
+        values.putNull(KEY_DIVI);
+        values.putNull(KEY_MULTI);
+        values.putNull(KEY_INICIO);
+        values.putNull(KEY_FIN);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(TABLE_EQUATIONS, values, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
 
     }
@@ -454,21 +480,54 @@ void addRespuesta(RespuestaClass respuesta){
 
 
     String getRespuestaEq(int id){
-        String respuestaeq = new String();
+
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESPEQ},
                 KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
 
+        if (cursor != null){
         if (cursor.moveToFirst()){
             do {
 
-                respuestaeq = cursor.getString(cursor.getColumnIndex(KEY_RESPEQ));
-
+                String respuestaeq = cursor.getString(cursor.getColumnIndex(KEY_RESPEQ));
+                return respuestaeq;
 
             }while (cursor.moveToNext());
         }
 
-        return respuestaeq;
+        else{ String respuestaeq = null;
+            return respuestaeq;}}
+
+        else{
+
+            String respuestaeq = null;
+        return respuestaeq;}
+
+
+
+    }
+
+    String getRespuestaEqHechizo(int id){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_EQUATIONS, new String[]{KEY_ID, KEY_RESPEQ},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+
+
+            if (cursor.moveToFirst()){
+                do {
+
+                    String respuestaeq = cursor.getString(cursor.getColumnIndex(KEY_RESPEQ));
+                    return respuestaeq;
+
+                }while (cursor.moveToNext());
+            }
+
+            else{ String respuestaeq = null;
+                return respuestaeq;}
+
+
+
 
     }
 
@@ -597,11 +656,19 @@ void addRespuesta(RespuestaClass respuesta){
 
     int getParenAbierMax(){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT MAX("+ KEY_PARENABIERTO+") FROM "+ TABLE_EQUATIONS, null);
-        if (cursor!= null)
-            cursor.moveToFirst();
-        int parenabier = cursor.getInt(1);
-        return parenabier;
+        Cursor cursor = db.rawQuery("SELECT MAX(" + KEY_PARENABIERTO + ") FROM " + TABLE_EQUATIONS, null);
+
+        if (cursor.moveToFirst()){
+            do {
+
+                Integer respuesta = cursor.getInt(0);
+                return respuesta;
+
+            }while (cursor.moveToNext());
+        }
+
+        else{ Integer respuesta = null;
+            return respuesta;}
 
     }
 
@@ -783,7 +850,7 @@ do {
     public void blankParenAbierto(int pos){
 
         ContentValues cv = new ContentValues();
-        cv.put(KEY_PARENABIERTO, " ");
+        cv.putNull(KEY_PARENABIERTO);
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
@@ -793,7 +860,7 @@ do {
     public void blankParenCerrado(int pos){
 
         ContentValues cv = new ContentValues();
-        cv.put(KEY_PARENCERRADO, " ");
+        cv.putNull(KEY_PARENCERRADO);
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(TABLE_EQUATIONS, cv, KEY_ID + " = ?", new String[]{String.valueOf(pos)});
         db.close();
