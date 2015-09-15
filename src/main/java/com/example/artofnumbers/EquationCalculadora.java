@@ -322,19 +322,7 @@ public EquationCalculadora(String lacarnita){
 //                       FOR QUE BARRERA COLUMNA RESPEQ DE TABLA EQUATION EN BUSCAR DE VALORES PASO 24
                 for (vi=0; vi<characterderaw1.length; vi++){
 
-//                    ESTA LANZANDO UN NUMERO DE MAS, SE VERIFICO QUE REALIZA LAS OPERACIONES, CAMBIAR
-//                    O QUITAR LA EXPRESION DE ABAJO EN EL IF MAS INTERNO PARA VERIFICAR
-//                    expresionenparentesis.append(characterderaw1[vi]).toString();
-//                    ESTA EXPRESION ES LA QUE AGREGA EL SIMBOLO
-//                    POR EJEMPLO (7+6)-(8-2)=1366, SIENDO (7+6)=13 Y (8-2)=6, REPITE EL 6 DE NUEVO
-//                    SI COLOCO EXPRESION (7+2)+(8-2)+(6-2) IGNORA EL (8-2), AUNQUE IDENTIFICA LAS POSICIONES
-//                    DE LOS SIMBOLOS EN [5,11], LA RESPUESTA SERA PARA ESTE CASO 944 LO CUAL ES ERRONEO
-//                    ESTA RETORNANDO VALORES DE getRespuestaEq que tienen null, y por ello retorna cero
-//                    Y REPITE EL ULTIMO VALOR. POSIBLEMENTE EL ERROR ESTE EN EL IF DE COLLECTIONS MAX
-//                    O EN LA EXPRESION dbcerebro.getRespuestaEq(vi+1)==null, PUES RETORNA STRINGS
-//                    Y CUANDO EL VALOR ES NULL EN EL RECORD ENTONCES DEVUELVE 0 (CERO) NO NULL, TAL VEZ
-//                    MODIFICANDO EL METODO getRespuestaEq() PARA QUE DEVUELVA FLOATS O NUMEROS O UN STRING
-//                    QUE DIGA QUE NO TIENE VALOR, PROBAR CON EL METODO getRespuestaEqHechiza(), EL CUAL LO CREE PARA PROBAR ESTE METODO
+//
 
                     if (dbcerebro.getRespuestaEq(vi + 1)== null){
 
