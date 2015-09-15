@@ -350,13 +350,15 @@ public EquationCalculadora(String lacarnita){
 
                                     if (vi < contsimbolo.get(iv)) {
 
-                                        vi = contsimbolo.get(iv);
+                                        vi = contsimbolo.get(iv)-1;
 //                                        ESTA EXPRESION AGREGA EL SIMBOLO
-                                        expresionenparentesis.append(characterderaw1[vi]).toString();
+
+                                        iv = contsimbolo.size()+1;
                                     }
                                 }
 
                             }
+                            else {vi=characterderaw1.length+1;}
                         }
 
                         else {vi=characterderaw1.length+1;}
