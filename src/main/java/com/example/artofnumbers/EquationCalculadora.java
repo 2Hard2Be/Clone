@@ -455,7 +455,7 @@ public EquationCalculadora(String lacarnita){
         Integer ultimo = dbcerebro.getSuma(1);
         dbcerebro.deleteTodasEquations();
 
-        return respuesta+" "+contsimbolo+" "+ultimo;
+        return respuesta;
     }
 
 }

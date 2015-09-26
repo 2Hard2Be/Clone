@@ -46,11 +46,23 @@ public class CalculadoraAdvanced {
 
             if (Arrays.asList('+', '-', '*', '/').contains(lecturaraw[i])) {
                 operacion = operacion+1;
+//                Para asegurar que no cuente el primer negativo
+                if (Arrays.asList('-').contains(lecturaraw[0])&& i == 0){
+                    operacion = operacion-1;
+                }
+
             }
 
             if (i<lecturaraw.length-1){
                 if (Arrays.asList('+', '-', '*', '/').contains(lecturaraw[numeroref])) {
                     operacion = operacion+1;
+//                    para asegurar que no cuente la duplicidad de signos
+                    if(Arrays.asList('+', '-', '*', '/').contains(lecturaraw[i])&&
+                            Arrays.asList('+', '-', '*', '/').contains(lecturaraw[numeroref]) ){
+                        operacion = operacion -2;
+
+                    }
+
                 }
 
             }

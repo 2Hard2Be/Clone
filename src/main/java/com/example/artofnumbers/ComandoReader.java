@@ -63,29 +63,33 @@ public String comando;
 
             int i;
             int ii;
-            for (i = 0; i < comandolectura.length; i++) {
+
+//                Atencion modificacion importante, le quite que lea el primer simbolo por si es un signo negativo
+//                realmente non le debe importar cual es el primero sino solo dar el criterio de que operacion se trata
+
+            for (i = 1; i < comandolectura.length; i++) {
 
                 switch (comandolectura[i]) {
 
                     case '+':
 
                         quees = "suma";
-                        i=comandolectura.length;
+                        i=comandolectura.length+1;
                         break;
 
                     case '-':
                         quees = "resta";
-                        i=comandolectura.length;
+                        i=comandolectura.length+1;
                         break;
 
                     case '*':
                         quees = "multiplicacion";
-                        i=comandolectura.length;
+                        i=comandolectura.length+1;
                         break;
 
                     case '/':
                         quees = "division";
-                        i=comandolectura.length;
+                        i=comandolectura.length+1;
                         break;
 
 
