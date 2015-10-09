@@ -272,6 +272,72 @@ public class Calculadora {
 //                                      ver comentarios de arriba
                                         else {
 
+                                          if (posigno == contsimbolominus.get(0)){
+
+                                              for (ii = 0; ii < posigno-1; ii++) {
+
+                                                  argumento1.append(lecturaraw[ii]).toString();
+
+
+                                              }
+                                              iii = posigno+1;
+                                              while (iii < lecturaraw.length) {
+
+                                                  argumento2.append(lecturaraw[iii]).toString();
+                                                  iii = iii + 1;
+                                              }
+
+                                              String arg1string = argumento1.toString();
+                                              String arg2string = argumento2.toString();
+
+                                              if (isDouble(arg1string) && isDouble(arg2string)) {
+
+                                                  Double arg1double = Double.valueOf(arg1string);
+                                                  Double arg2double = Double.valueOf(arg2string);
+
+
+                                                  switch (operacion) {
+                                                      case "suma":
+
+
+                                                          calculodouble = arg1double - arg2double;
+                                                          calculostr = calculodouble.toString();
+                                                          break;
+
+                                                      case "resta":
+
+                                                          calculodouble = arg1double + arg2double;
+                                                          calculostr = calculodouble.toString();
+                                                          break;
+
+                                                      case "multiplicacion":
+                                                          calculodouble = arg1double * arg2double*(-1);
+                                                          calculostr = calculodouble.toString();
+                                                          break;
+
+                                                      case "division":
+                                                          calculodouble = arg1double / arg2double*(-1);
+                                                          calculostr = calculodouble.toString();
+                                                          break;
+
+                                                      default:
+                                                          calculostr = "error";
+
+
+                                                  }
+
+
+                                              } else {
+
+                                                  calculostr = "1.1 use numbers for calculations";
+
+                                              }
+                                          }
+
+                                          else {
+                                              calculostr = "1.1 check operator position";
+                                          }
+
 
                                       }
                                         break;
@@ -296,6 +362,26 @@ public class Calculadora {
                                                 iii = iii + 1;
                                             }
 
+                                                if (operacion == "resta"){
+                                                    argumento1.setLength(0);
+                                                    argumento2.setLength(0);
+
+                                                    for (ii = 0; ii < posigno; ii++) {
+
+                                                        argumento1.append(lecturaraw[ii]).toString();
+
+
+                                                    }
+                                                    iii = posigno+1;
+                                                    while (iii < lecturaraw.length) {
+
+                                                        argumento2.append(lecturaraw[iii]).toString();
+                                                        iii = iii + 1;
+                                                    }
+
+
+                                                }
+
                                             String arg1string = argumento1.toString();
                                             String arg2string = argumento2.toString();
 
@@ -315,7 +401,7 @@ public class Calculadora {
 
                                                     case "resta":
 
-                                                        calculodouble = arg1double + arg2double;
+                                                        calculodouble = arg1double - arg2double;
                                                         calculostr = calculodouble.toString();
                                                         break;
 
@@ -338,7 +424,7 @@ public class Calculadora {
 
                                             } else {
 
-                                                calculostr = "1 use numbers for calculations";
+                                                calculostr = "1 use numbers for calculations"+" "+operacion;
 
                                             }
                                         }
